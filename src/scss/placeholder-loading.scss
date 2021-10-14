@@ -1,0 +1,168 @@
+/**
+ * placeholder-loading v0.4.0
+ * Author: Zalog (https://www.zalog.ro/)
+ * License: MIT
+ **/
+
+.ph-item {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  overflow: hidden;
+  direction: ltr;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  box-sizing: border-box;
+  &.abs{
+    width: 100%;
+    height: 100%;
+  }
+  &.no-border{
+    border: none;
+  }
+
+
+  *, :after, :before {
+    box-sizing: border-box;
+  }
+
+  &:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    width: 500%;
+    margin-left: -250%;
+    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, hsla(0, 0%, 100%, 0.35) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%;
+    -webkit-animation: phAnimation .8s linear infinite;
+    animation: phAnimation .8s linear infinite;
+    content: " ";
+    pointer-events: none;
+  }
+
+  > * {
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: column;
+  }
+}
+
+.ph-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -7.5px;
+
+  div {
+    height: 10px;
+    margin-top: 7.5px;
+    background-color: #ced4da;
+  }
+
+  .big, &.big div {
+    height: 20px;
+  }
+
+  .empty {
+    background-color: hsla(0, 0%, 100%, 0);
+  }
+}
+
+.ph-col-2 {
+  flex: 0 0 16.66667%;
+}
+
+.ph-col-4 {
+  flex: 0 0 33.33333%;
+}
+
+.ph-col-6 {
+  flex: 0 0 50%;
+}
+
+.ph-col-8 {
+  flex: 0 0 66.66667%;
+}
+
+.ph-col-10 {
+  flex: 0 0 83.33333%;
+}
+
+.ph-col-12 {
+  flex: 0 0 100%;
+}
+
+[class*=ph-col] {
+  direction: ltr;
+
+  > * + {
+    .ph-row {
+      margin-top: 0;
+    }
+
+    * {
+      margin-top: 7.5px;
+    }
+  }
+}
+
+.ph-avatar {
+  position: relative;
+  width: 100%;
+  min-width: 60px;
+  overflow: hidden;
+  background-color: #ced4da;
+  border-radius: 50%;
+
+  &:before {
+    display: block;
+    padding-top: 100%;
+    content: " ";
+  }
+}
+
+.ph-picture {
+  width: 100%;
+  height: 100%;
+  background-color: #ced4da;
+  position: relative;
+  .brand-text-wrapper{
+    position: absolute;
+    left: 15%;
+    top: 15%;
+    width: 70%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .brand-text{
+      font-size: 100px;
+      font-weight: 500;
+      color: #ffffff;
+      opacity: 0.3;
+    }
+  }
+}
+
+@-webkit-keyframes phAnimation {
+  0% {
+    transform: translate3d(-30%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(30%, 0, 0);
+  }
+}
+
+@keyframes phAnimation {
+  0% {
+    transform: translate3d(-30%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(30%, 0, 0);
+  }
+}

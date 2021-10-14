@@ -1,0 +1,54 @@
+<section class="form-wrap login-wrap">
+  <div class="container">
+    <div class="form-wrap-inner login-wrap-inner"><h2>Login</h2>
+      <form method="POST" action="" (ngSubmit)="signIn()">
+        <div class="form-group"><label for="email">Email/Phone<span>*</span></label>
+          <input type="text" name="email" value="" id="email" class="form-control" [(ngModel)]="signInForm.email">
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group"><label for="password">Password<span>*</span></label>
+          <input type="password" name="password" id="password" class="form-control" [(ngModel)]="signInForm.password">
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div class="form-check">
+            <input class="form-check-input" name="remember" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="signInForm.remember" (change)="checkValue(signInForm.remember ? true : false)" />
+            <label class="form-check-label" for="flexCheckDefault">
+              Remember
+            </label>
+          </div>
+          <a [routerLink]="['/forgot']" class="forgot-password">
+            forgot password?
+          </a>
+        </div>
+        <button *ngIf=" loadingbtn === false" type="submit" data-loading="" class="btn btn-primary btn-sign-in mb-4">
+          SIGN IN
+        </button>
+
+        <button *ngIf=" loadingbtn === true" type="button" disabled data-loading="" class="btn btn-primary btn-sign-in mb-4">
+          <i class="las la-spinner"></i>
+        </button>
+      </form>
+<!--      <p class="text-center  mt-3 mb-3">Or, login with</p>-->
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <a class="btn btn-primary btn-facebook" href="{{ ENV.PAY_URL }}/login/facebook"><span class="lab la-facebook-f"></span>&nbsp;Facebook</a>
+        </div>
+        <div class="col-md-6 mb-4">
+          <a class="btn btn-primary btn-google" href="{{ ENV.PAY_URL }}/login/google"><span class="lab la-google"></span>&nbsp;Google</a>
+        </div>
+        <div class="col-md-6 mb-4">
+          <a class="btn btn-primary btn-twitter" href="{{ ENV.PAY_URL }}/login/google"><span class="lab la-twitter"></span>&nbsp;Twitter</a>
+        </div>
+        <div class="col-md-6">
+          <a class="btn btn-primary btn-linkedin" href="{{ ENV.PAY_URL }}/login/linkedin"><span class="lab la-linkedin-in"></span>&nbsp;Linkedin</a>
+        </div>
+      </div>
+      <span class="have-an-account">
+                    Don't Have an Account?
+                </span>
+      <a [routerLink]="['/register']" class="btn btn-default btn-create-account">
+        CREATE ACCOUNT
+      </a></div>
+  </div>
+</section>

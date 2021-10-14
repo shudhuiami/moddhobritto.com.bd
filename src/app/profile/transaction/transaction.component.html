@@ -1,0 +1,58 @@
+
+<section class="profile-section">
+  <div class="container" >
+    <div class="row">
+      <div class="col-lg-3">
+        <app-profile-link></app-profile-link>
+      </div>
+      <div class="col-lg-9">
+          <div class="list-of-address">
+            <div class="tab-products-header clearfix mb-4">
+              <ul class="tabs float-left">
+                <li class="tab-item active">
+                  Transaction
+                </li>
+              </ul>
+            </div>
+            <div class="lists table-responsive">
+              <table class="table table-hover">
+                <tbody *ngIf="transData.length > 0">
+                <tr *ngFor="let list of transData">
+                  <td>
+                    <div>
+                      <span class="title">payment ID:</span>
+                      <span class="content">{{list.order_id}}</span>
+                    </div> <br>
+                    <div>
+                      <span class="title">Payment Method:</span>
+                      <span class="content">{{list.payment_method}}</span>
+                    </div> <br>
+                    <div>
+                      <span class="title">Amount:</span>
+                      <span class="content">{{list.amount}}</span>
+                    </div> <br>
+                    <div>
+                      <span class="title">Payment Date:</span>
+                      <span class="content">{{list.created_at}}</span>
+                    </div> <br>
+                    <div>
+                      <span class="title">Transaction ID:</span>
+                      <span class="content">{{list.transaction_id}}</span>
+                    </div>
+                  </td>
+                </tr>
+                  <!--<tr >
+                    <td [innerHTML]="list.transaction_id"></td>
+                    <td [innerHTML]="list.payment_method"></td>
+                    <td [innerHTML]="list.amount"></td>
+                  </tr>-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>

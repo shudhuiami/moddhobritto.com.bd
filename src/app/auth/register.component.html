@@ -1,0 +1,49 @@
+<section class="form-wrap register-wrap">
+  <div class="container">
+    <div class="form-wrap-inner register-wrap-inner"><h2>Register</h2>
+      <form method="POST" action="" (ngSubmit)="SubmitRegister()">
+        <div class="form-group"><label for="name">
+          Name<span>*</span></label>
+          <input type="text" name="name" value="" id="name" [(ngModel)]="signupForm.name" class="form-control" >
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group"><label for="email">
+          Email<span>*</span></label>
+          <input type="text" name="email" value="" id="email" class="form-control" [(ngModel)]="signupForm.email">
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group"><label for="phone">
+          Phone<span>*</span></label>
+          <input type="text" name="phone" value="" id="phone" class="form-control " [(ngModel)]="signupForm.phone">
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group"><label for="password">
+          Password<span>*</span></label>
+          <input type="password" name="password" id="password" class="form-control" [(ngModel)]="signupForm.password">
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group"><label for="confirm-password">
+          Confirm Password<span>*</span></label>
+          <input type="password" name="password_confirmation" id="confirm-password" class="form-control" [(ngModel)]="signupForm.password_confirmation">
+          <div class="invalid-feedback"></div>
+        </div>
+
+<!--        <div class="form-check terms-and-conditions">-->
+<!--          <input type="checkbox" name="privacy_policy" value="1" id="terms"> <label for="terms" class="form-check-label">-->
+<!--          I agree to the <a href="https://fleetcart.envaysoft.com/en/privacy-policy">Privacy Policy</a></label>-->
+<!--        </div>-->
+        <button *ngIf="loadingbtn === false" type="submit" data-loading="" class="btn btn-primary btn-create-account" >
+          CREATE ACCOUNT
+        </button>
+
+        <button *ngIf="loadingbtn === true" type="button" disabled data-loading="" class="btn btn-primary btn-create-account " >
+          <i class="las la-spinner"></i>
+        </button>
+      </form>
+      <span class="have-an-account">
+                    Already Have an Account?
+                </span> <a [routerLink]="['/login']" class="btn btn-default btn-sign-in">
+        SIGN IN
+      </a></div>
+  </div>
+</section>

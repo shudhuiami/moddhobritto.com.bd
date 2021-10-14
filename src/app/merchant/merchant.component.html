@@ -1,0 +1,606 @@
+<div class="merchant">
+  <div class="container">
+    <div class="wrapper">
+      <h1 class="text-center mb-5 mt-5 page-title-container" ><span class="page-title gradient-text-theme">Become a Merchant</span></h1>
+
+      <div class="merchant-form">
+        <form action="" id="MerchantCreateForm">
+            <div class="row">
+              <div class="tab-products-header clearfix mb-4 col-12">
+                <ul class="tabs float-left">
+                  <li class="tab-item active">
+                    Owner Information
+                  </li>
+                </ul>
+              </div>
+              <br>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="name" class="col-lg-3 col-form-label">Full Name <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="full_name" class="form-control" id="name"  [(ngModel)]="MerchantForm.full_name">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="position" class="col-lg-3 col-form-label">Position In Company <span class="text-danger">*</span> : </label>
+                  <div class="col-lg-9">
+                    <input type="text" name="position_in_company" class="form-control" id="position"  [(ngModel)]="MerchantForm.position_in_company">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="current_address" class="col-lg-3 col-form-label">Current Address <span class="text-danger">*</span>:</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="current_address" class="form-control" id="current_address"  [(ngModel)]="MerchantForm.current_address">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+                </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="permanent_address" class="col-lg-3 col-form-label">Permanent Address <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="permanent_address" class="form-control" id="permanent_address"  [(ngModel)]="MerchantForm.permanent_address">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+          </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="personal_email" class="col-lg-3 col-form-label">Personal Email <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="email" name="email" class="form-control" id="personal_email"  [(ngModel)]="MerchantForm.email">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="personal_number" class="col-lg-3 col-form-label">Personal Number <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="phone" class="form-control" id="personal_number"  [(ngModel)]="MerchantForm.phone">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="birthC_IND_number" class="col-lg-3 col-form-label">Birth C/ NID Number <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="nid_no" class="form-control" id="birthC_IND_number"  [(ngModel)]="MerchantForm.nid_no">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="etin_number" class="col-lg-3 col-form-label">e-TIN Number :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="etin_number" class="form-control" id="etin_number"  [(ngModel)]="MerchantForm.etin_number">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="tab-products-header clearfix mb-4 col-12">
+                <ul class="tabs float-left">
+                  <li class="tab-item active">
+                    Business Information
+                  </li>
+                </ul>
+              </div>
+              <br>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="shop_name" class="col-lg-3 col-form-label">Shop Name <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="shop_name" class="form-control" id="shop_name"  [(ngModel)]="MerchantForm.shop_name">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="shop_address" class="col-lg-3 col-form-label">Shop Address <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="shop_address" class="form-control" id="shop_address"  [(ngModel)]="MerchantForm.shop_address">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="shop_type" class="col-lg-3 col-form-label">Shop Product Type <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="shop_type" class="form-control" id="shop_type"  [(ngModel)]="MerchantForm.shop_type">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="business_mail" class="col-lg-3 col-form-label">Business Mail <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="business_email" class="form-control" id="business_mail"  [(ngModel)]="MerchantForm.business_email">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="business_num1" class="col-lg-3 col-form-label">Business Number 1 <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="business_no_1" class="form-control" id="business_num1"  [(ngModel)]="MerchantForm.business_no_1">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="business_num2" class="col-lg-3 col-form-label">Business Number 2 :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="business_no_1" class="form-control" id="business_num2"  [(ngModel)]="MerchantForm.business_no_2">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="business_age" class="col-lg-3 col-form-label">Business Age <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="business_age" class="form-control" id="business_age"  [(ngModel)]="MerchantForm.business_age">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="trade_licence_num" class="col-lg-3 col-form-label">Trade Licence Number <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="trade_license_no" class="form-control" id="trade_licence_num"  [(ngModel)]="MerchantForm.trade_license_no">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="bin_num" class="col-lg-3 col-form-label">BIN Number :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="bin_num" class="form-control" id="bin_num"  [(ngModel)]="MerchantForm.bin_num">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="tab-products-header clearfix mb-4 col-12">
+                <ul class="tabs float-left">
+                  <li class="tab-item active">
+                    Social Media Information
+                  </li>
+                </ul>
+              </div>
+              <br>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="whatsApp" class="col-lg-3 col-form-label">WhatsApp Number <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="whatsapp_no" class="form-control" id="whatsApp"  [(ngModel)]="MerchantForm.whatsapp_no">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="whatsApp" class="col-lg-3 col-form-label">Website Link :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="website_link" class="form-control" id="website_link"  [(ngModel)]="MerchantForm.website_link">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="facebook_page_link" class="col-lg-3 col-form-label">Facebook Page link :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="facebook_page_link" class="form-control" id="facebook_page_link"  [(ngModel)]="MerchantForm.facebook_page_link">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="instagram_link" class="col-lg-3 col-form-label">Instagram link :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="instagram_link" class="form-control" id="instagram_link"  [(ngModel)]="MerchantForm.instagram_link">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="youtube_link" class="col-lg-3 col-form-label">Youtube link :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="youtube_link" class="form-control" id="youtube_link"  [(ngModel)]="MerchantForm.youtube_link">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="tab-products-header clearfix mb-4 col-12">
+                <ul class="tabs float-left">
+                  <li class="tab-item active">
+                    Payment Information
+                  </li>
+                </ul>
+              </div>
+              <br>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="bank_name" class="col-lg-3 col-form-label">Bank Name :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="bank_name" class="form-control" id="bank_name"  [(ngModel)]="MerchantForm.bank_name">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="account_holder_name" class="col-lg-3 col-form-label">Account Holder Name <span class="text-danger">*</span> :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="account_holder_name" class="form-control" id="account_holder_name"  [(ngModel)]="MerchantForm.account_holder_name">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="account_number" class="col-lg-3 col-form-label">Account Number  :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="account_no" class="form-control" id="account_number"  [(ngModel)]="MerchantForm.account_no">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="bikash_number" class="col-lg-3 col-form-label">Bkash Number :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="bikash_number" class="form-control" id="bikash_number"  [(ngModel)]="MerchantForm.bkash_no">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="row mb-3">
+                  <label for="nagad_no" class="col-lg-3 col-form-label">Nagad Number :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="nagad_no" class="form-control" id="nagad_no"  [(ngModel)]="MerchantForm.nagad_no">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="rocket_no" class="col-lg-3 col-form-label">Rocket Number :</label>
+                  <div class="col-lg-9">
+                    <input type="text" name="rocket_no" class="form-control" id="rocket_no"  [(ngModel)]="MerchantForm.rocket_no">
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="tab-products-header clearfix mb-4 col-12">
+                <ul class="tabs float-left">
+                  <li class="tab-item active">
+                    Notes
+                  </li>
+                </ul>
+              </div>
+              <br>
+              <div class="col-lg-12">
+                <div class="row mb-3">
+                  <label for="notes" class="col-lg-3 col-form-label">Notes :</label>
+                  <div class="col-lg-9">
+                    <textarea name="notes" class="form-control" id="notes" [(ngModel)]="MerchantForm.notes"  rows="10"></textarea>
+                    <div class="invalid-feedback"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-products-header clearfix mb-4 col-12">
+                <ul class="tabs float-left">
+                  <li class="tab-item active">
+                    Attach File
+                  </li>
+                </ul>
+              </div>
+              <br>
+              <div class="col-lg-4">
+                <div class="form-group position-relative">
+                  <span class="las la-times deleteImage" (click)="removeImage($event, 1)" *ngIf="loadingType[0] === 0 && MerchantForm.shop_logo != null"></span>
+                  <label for="shop_logo">
+                    <div class="imagePreviewUpload" *ngIf="loadingType[0] === 0 && MerchantForm.shop_logo == null ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview" *ngIf="loadingType[0] === 0 && MerchantForm.shop_logo != null">
+                      <img [src]="MerchantForm.shop_logo" alt="">
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[0] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="shop_logo" id="shop_logo" class="form-control d-none"  (change)="AttachFile($event, 1, 0)">
+                  <div  class="text-center" > Shop Logo </div>
+                  <div class="invalid-feedback text-center"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group ">
+                  <span class="las la-times deleteImage"  *ngIf="loadingType[1] === 0 && MerchantForm.shop_banner != null" (click)="removeImage($event, 2)"></span>
+                  <label for="shop_Banner">
+                    <div class="imagePreviewUpload" *ngIf="loadingType[1] === 0 && MerchantForm.shop_banner == null  ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview" *ngIf="loadingType[1] === 0 && MerchantForm.shop_banner != null">
+                      <img [src]="MerchantForm.shop_banner" alt="">
+
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[1] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="shop_banner" id="shop_Banner" class="form-control d-none"  (change)="AttachFile($event, 2, 1)">
+                  <div  class="text-center" > Shop Banner </div>
+                  <div class="invalid-feedback text-center"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group position-relative">
+                  <span class="las la-times deleteImage" *ngIf="loadingType[2] === 0 && MerchantForm.visiting_card != null" (click)="removeImage($event, 3)"></span>
+                  <label for="visiting_card">
+                    <div class="imagePreviewUpload"  *ngIf="loadingType[2] === 0 && MerchantForm.visiting_card == null ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview" *ngIf="loadingType[2] === 0 && MerchantForm.visiting_card != null">
+                      <img [src]="MerchantForm.visiting_card" alt="">
+
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[2] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="file" id="visiting_card" class="form-control d-none"  (change)="AttachFile($event, 3, 2)">
+                  <div  class="text-center" > Visiting Card</div>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group position-relative">
+                  <span class="las la-times deleteImage" *ngIf="loadingType[3] === 0 && MerchantForm.owner_photo != null" (click)="removeImage($event, 4)"></span>
+                  <label for="owner_photo">
+                    <div class="imagePreviewUpload"   *ngIf="loadingType[3] === 0 && MerchantForm.owner_photo == null  ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview"  *ngIf="loadingType[3] === 0 && MerchantForm.owner_photo != null">
+                      <img [src]="MerchantForm.owner_photo" alt="">
+
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[3] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="owner_photo" id="owner_photo" class="form-control d-none"  (change)="AttachFile($event, 4, 3)">
+                  <div  class="text-center" > Owner Photo <span class="text-danger">*</span></div>
+                  <div class="invalid-feedback text-center"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group position-relative">
+                  <span class="las la-times deleteImage" *ngIf="loadingType[4] === 0 && MerchantForm.owner_nid != null" (click)="removeImage($event, 5)"></span>
+                  <label for="owner_NID">
+                    <div class="imagePreviewUpload"  *ngIf="loadingType[4] === 0 && MerchantForm.owner_nid == null  ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview" *ngIf="loadingType[4] === 0 && MerchantForm.owner_nid != null">
+                      <img [src]="MerchantForm.owner_nid" alt="">
+
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[4] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="owner_nid" id="owner_NID" class="form-control d-none"  (change)="AttachFile($event, 5, 4)">
+                  <div  class="text-center" > Owner NID <span class="text-danger">*</span></div>
+
+                  <div class="invalid-feedback text-center"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group position-relative">
+                  <span class="las la-times deleteImage" *ngIf="loadingType[5] === 0 && MerchantForm.guardian_nid != null " (click)="removeImage($event, 6)"></span>
+                  <label for="guardian_NID">
+                    <div class="imagePreviewUpload"   *ngIf="loadingType[5] === 0 && MerchantForm.guardian_nid == null  ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview" *ngIf="loadingType[5] === 0 && MerchantForm.guardian_nid != null ">
+                      <img [src]="MerchantForm.guardian_nid" alt="">
+
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[5] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="file" id="guardian_NID" class="form-control d-none"  (change)="AttachFile($event, 6, 5)">
+                  <div  class="text-center" > Guardian NID </div>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group position-relative">
+                  <span class="las la-times deleteImage" *ngIf="loadingType[6] === 0 && MerchantForm.trade_license !=  null" (click)="removeImage($event, 7)"></span>
+                  <label for="trade_license">
+                    <div class="imagePreviewUpload"  *ngIf="loadingType[6] === 0 && MerchantForm.trade_license == null  ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview" *ngIf="loadingType[6] === 0 && MerchantForm.trade_license !=  null">
+                      <img [src]="MerchantForm.trade_license" alt="">
+
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[6] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="file" id="trade_license" class="form-control d-none"  (change)="AttachFile($event, 7, 6)">
+                  <div  class="text-center" > Trade License </div>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group position-relative">
+                  <span class="las la-times deleteImage"  *ngIf="loadingType[7] === 0 && MerchantForm.etin_certificate != null " (click)="removeImage($event, 8)"></span>
+                  <label for="eTin_certificate">
+                    <div class="imagePreviewUpload"  *ngIf="loadingType[7] === 0 && MerchantForm.etin_certificate == null  ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview" *ngIf="loadingType[7] === 0 && MerchantForm.etin_certificate != null ">
+                      <img [src]="MerchantForm.etin_certificate" alt="">
+
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[7] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="file" id="eTin_certificate" class="form-control d-none" (change)="AttachFile($event, 8, 7)">
+                  <div  class="text-center" >e-Tin Certificate </div>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group position-relative">
+                  <span class="las la-times deleteImage" *ngIf="loadingType[8] === 0 && MerchantForm.bin_certificate != null" (click)="removeImage($event, 9)"></span>
+                  <label for="bin_certificate">
+                    <div class="imagePreviewUpload"  *ngIf="loadingType[8] === 0 && MerchantForm.bin_certificate == null  ">
+                      <i class="las la-upload"></i>
+                    </div>
+                    <div class="imagePreview" *ngIf="loadingType[8] === 0 && MerchantForm.bin_certificate != null">
+                      <img [src]="MerchantForm.bin_certificate" alt="">
+
+                    </div>
+                    <div class="lds-roller-wrapper" *ngIf="loadingType[8] === 1">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="file" name="file" id="bin_certificate" class="form-control d-none" (change)="AttachFile($event, 9, 8)">
+                  <div  class="text-center" >BIN Certificate </div>
+                  <div class="invalid-feedback "></div>
+                </div>
+              </div>
+              <div class="col-lg-12 mt-5 ">
+                <button *ngIf=" loadingBtn === false" type="submit"  (click)="CreateMerchant()"  data-loading="" class="btn  btn-default   btn-sign-in" style="max-width: 200px">
+                  Submit
+                </button>
+
+                <button *ngIf=" loadingBtn === true" type="submit"  (click)="CreateMerchant()"  data-loading="" class="btn  btn-default   btn-sign-in" style="max-width: 200px">
+                  <i class="las la-spinner"></i>
+                </button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

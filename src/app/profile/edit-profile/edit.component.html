@@ -1,0 +1,142 @@
+<section class="profile-section">
+  <div class="container" >
+    <div class="contact-info">
+      <div class="row">
+        <div class="col-xl-3 col-lg-4">
+          <app-profile-link></app-profile-link>
+        </div>
+        <div class="col-xl-9 col-lg-8">
+        <!--   Contact Information   -->
+        <div class="user-info">
+          <div class="tab-products-header clearfix mb-4">
+            <ul class="tabs float-left">
+              <li class="tab-item active">
+                Edit Information
+              </li>
+            </ul>
+          </div>
+          <br>
+          <div class="info-wrap" *ngIf="UserInfo != null">
+              <div class=" mb-4" >
+                <div class="form-group position-relative">
+                  <input type="file" id="upload-image" name="avatar" class="d-none upload-file" (change)="AttachFile($event, 0)">
+
+                  <div class="preview-image" style="border-radius: 50%">
+                    <label for="upload-image" class="btn upload-image" >
+                      <i class="las la-pen"></i>
+                    </label>
+                    <img style="border-radius: 50%" *ngIf="previewImage != null && loading === false" [src]="previewImage" alt="">
+                    <img style="border-radius: 50%" *ngIf="previewImage == null && loading === false" [src]="UserInfo.avatar" alt="">
+                    <div class="lds-roller-wrapper" style="height: 140px; border-radius: 50%" *ngIf="loading === true">
+                      <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class=" mb-4" >
+                  <div class="form-group">
+                    <label for="name">Name<span>*</span></label>
+                    <input type="text" class="form-control" id="name"  name="name" [(ngModel)]="UserInfo.name">
+                    <div class="invalid-feedback"></div>
+                  </div>
+              </div>
+            <div class=" mb-4">
+              <div class="form-group"><label for="email">Email<span>*</span></label>
+                <input type="email" id="email" value="{{UserInfo.email}}" class="form-control" disabled>
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+              <div class=" mb-4">
+                  <div class="form-group"><label for="phone">Phone<span>*</span></label>
+                    <input type="text"  class="form-control " id="phone" name="phone" [(ngModel)]="UserInfo.phone">
+                    <div class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class=" mb-4">
+                  <div class="form-group"><label for="dob">Date of Birth<span>*</span></label>
+                    <input type="date"  class="form-control " id="dob" name="dob" [(ngModel)]="UserInfo.dob">
+                    <div class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class=" mb-4">
+                  <div class="form-group"><label for="Profession">Profession <span>*</span></label>
+                    <input type="text"  class="form-control " id="Profession" name="profession" [(ngModel)]="UserInfo.profession">
+                    <div class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class=" mb-4">
+                  <div class="form-group"><label for="Position">Position  <span>*</span></label>
+                    <input type="text"  class="form-control " id="Position" name="position" [(ngModel)]="UserInfo.position">
+                    <div class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class=" mb-4">
+                  <div class="form-group"><label for="business_address">Job/Business Address  <span>*</span></label>
+                    <input type="text"  class="form-control " id="business_address" name="business_address" [(ngModel)]="UserInfo.business_address">
+                    <div class="invalid-feedback"></div>
+                </div>
+              </div>
+
+            <div class="mb-4">
+              <div class="row">
+                <div class="col-lg-5">
+                  <div class="form-group position-relative">
+                    <span class="las la-times deleteImage" (click)="removeImage($event, 1)" *ngIf="loadingType1 === false && UserInfos.visiting_card_full_path != null"></span>
+                    <label for="shop_logo">
+                      <div class="imagePreviewUpload" *ngIf="loadingType1 === false && UserInfos.visiting_card_full_path == null ">
+                        <i class="las la-upload"></i>
+                      </div>
+                      <div class="imagePreview" *ngIf="loadingType1 === false && UserInfos.visiting_card_full_path != null">
+                        <img [src]="UserInfos.visiting_card_full_path" alt="">
+                      </div>
+                      <div class="lds-roller-wrapper" *ngIf="loadingType1 === true">
+                        <div class="lds-roller">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </div>
+                      </div>
+                    </label>
+                    <input type="file" name="shop_logo" id="shop_logo" class="form-control d-none"  (change)="AttachFile($event, 1)">
+                    <div  class="text-center" > Visiting Card </div>
+                    <div class="invalid-feedback text-center"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class=" mb-4">
+                <button *ngIf=" loadingbtn === false" (click)="UpdateProfiles()"  type="submit" data-loading="" class="btn updateBtn btn-block btn-sign-in">
+                  Update
+                </button>
+
+                <button *ngIf=" loadingbtn === true" type="button" disabled data-loading="" class="btn updateBtn btn-block btn-sign-in">
+                  <i class="las la-spinner"></i>
+                </button>
+              </div>
+
+          </div>
+
+      </div>
+        <!--   Contact Information   -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>

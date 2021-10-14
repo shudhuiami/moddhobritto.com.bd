@@ -1,0 +1,115 @@
+
+<footer>
+  <div class="footer-middle">
+    <div class="container">
+      <div class="wrapper">
+        <div class="row" style="margin: 0">
+          <div class="col-lg-4 col-md-6"  *ngIf="webData != null">
+            <div class="title">
+              <div class="footerLogo">
+                <a [routerLink]="['/']" class="footer-logo" *ngIf="webData != null">
+                  <img src="../../../assets/img/logo.png" alt="">
+                </a>
+              </div>
+            </div>
+            <br>
+            <div class="content">
+              <div class="call">
+                Call Us 24/7 <br>
+                <h4 class="theme-color">{{webData.phone}}</h4>
+              </div>
+              <br>
+              <div class="address">
+                  Address :{{webData.address}}
+              </div>
+              <br>
+              <div class="email">
+                Email: {{webData.email}}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <div class="title">Quick Links</div>
+            <br>
+            <div class="content">
+              <ul class="menu"  *ngIf="pages != null">
+                <li *ngFor="let page of pages" class="menu-item">
+                  <a [routerLink]="['page', page.slug]">{{page.title}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6">
+            <div class="title">My Account</div>
+            <br>
+            <div class="content">
+              <ul class="menu">
+                <li class="menu-item">
+                  <a [routerLink]="['profile']">My Profile</a>
+                </li>
+                <li class="menu-item">
+                  <a [routerLink]="['orderStatus']"> Orders History</a>
+                </li>
+                <li class="menu-item">
+                  <a [routerLink]="['favorites']">My Wishlist</a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="title">Newsletter</div>
+            <br>
+            <div class="content">
+              You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.
+              <br>
+              <div class="subscribe">
+                <form (ngSubmit)="newsLetters()">
+                  <div class="form-group">
+                    <input type="text" name="email" placeholder="Enter your email address" [(ngModel)]="param.email" class="form-control">
+                    <button *ngIf=" loadingbtn === false" type="submit" data-loading="" class="btn btn-primary btn-subscribe">
+                      SUBSCRIBE
+                    </button>
+
+                    <button *ngIf=" loadingbtn === true" type="button" disabled data-loading="" class="btn btn-primary btn-subscribe">
+                      <i class="las la-spinner"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="social-link" *ngIf="webData != null">
+                <a class="btn btn-primary btn-sm text-light " *ngIf="webData.social_facebook != null" href="{{webData.social_facebook}}"><i class="lab la-facebook-f"></i></a>
+                <a class="btn btn-primary btn-sm text-light "  *ngIf="webData.social_youtube != null" href="{{webData.social_youtube}}"><i class="lab la-youtube"></i></a>
+                <a class="btn btn-primary btn-sm text-light " *ngIf="webData.social_instagram != null" href="{{webData.social_instagram}}"><i class="lab la-instagram"></i></a>
+                <a class="btn btn-primary btn-sm text-light "  *ngIf="webData.social_twitter != null" href="{{webData.social_twitter}}"><i class="lab la-twitter"></i></a>
+                <a class="btn btn-primary btn-sm text-light "  *ngIf="webData.social_linkedIn != null" href="{{webData.social_linkedIn}}"><i class="lab la-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="bottom-footer">
+    <div class="container wrapper">
+      <div class="row" style="margin: 0">
+        <div class="col-md-6">
+          Copyright © (2020 - 2021) - <a href="https://moddhobitto.com.bd/">moddhobitto.com.bd</a>. All rights reserved.
+        </div>
+        <div class=" col-md-6">
+          <div class="payment-method">
+            <img src="../../../assets/img/pay.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+

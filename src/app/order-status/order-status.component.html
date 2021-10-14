@@ -1,0 +1,372 @@
+<!--Order Status Component-->
+<div class="container">
+  <div class="wrapper-orders">
+    <div class="row">
+      <div class="col-lg-3">
+        <app-profile-link></app-profile-link>
+      </div>
+      <div class="col-lg-9">
+        <div class="order-information">
+          <div class="orders-info-wrap" style="background:none; padding: 0; border: none">
+            <div class="tab-products-header clearfix mb-4">
+              <ul class="tabs float-left">
+                <li class="tab-item orderDetails active"  (click)="GetOrders(0)"><a href="javascript:void (0)">Active Orders</a></li>
+                <li class="tab-item orderDetails"(click)="GetOrders(1)"><a href="javascript:void (0)" >Confirm</a></li>
+                <li class="tab-item orderDetails"(click)="GetOrders(2)"><a href="javascript:void (0)" >On The Way</a></li>
+                <li class="tab-item orderDetails"(click)="GetOrders(3)"><a href="javascript:void (0)" >Completed Orders</a></li>
+                <li class="tab-item orderDetails" (click)="GetOrders(4)"><a href="javascript:void (0)">Cancelled Orders</a></li>
+                <li class="tab-item orderDetails" (click)="GetOrders(5)"><a href="javascript:void (0)">Not Delivered</a></li>
+              </ul>
+            </div>
+
+            <div class="activeOrders" *ngIf="orderStatus == 0">
+              <div *ngIf="orderDetails.length > 0 && loading === false">
+                <div class="order-box mb-2"  [hidden]="orders.status != 0" *ngFor="let orders of orderDetails; let index = index">
+                <div class="border-bottom bg-white p-3 clearfix d-block">
+                  <div class="d-inline-block">
+                    <span class="theme-color btn" style="font-weight: 500;box-shadow: none;padding-left:0!important;"><span style="color: #191919"> Order ID:</span> {{orders.order_number}}</span> &nbsp; <span *ngIf="orders.payment_status == null" class="badge pl-2 pr-2 pt-1 pb-1 badge-danger text-light" style="font-weight: 500!important;">Missing Payment</span>
+                    <span class="theme-color btn" style="font-weight: 500;box-shadow: none;padding-left:0!important;"><span style="color: #191919"> Order ID:</span> {{orders.order_number}}</span> &nbsp; <span *ngIf="orders.payment_status == 2" class="badge pl-2 pr-2 pt-1 pb-1 badge-danger text-light" style="font-weight: 500!important;">Paid</span>
+                  </div>
+                  <div  class="float-right">
+                    <a href="javascript:void(0)"  class="btn theme-color" style="box-shadow: none">Cancel <span class="hide-sm">Order</span></a>
+                    <a [routerLink]="['/order/'+orders.order_number+'/payment']" class="btn theme-color" style="box-shadow: none" *ngIf="orders.payment_status == null">Proceed to payment</a>
+                    <a [routerLink]="['/profile/orders'+orders.order_number+'details']"  class="btn theme-color" style="box-shadow: none" *ngIf="orders.payment_status != null">Details</a>
+                  </div>
+                </div>
+                <div class="content p-3 bg-white  ">
+                  <div>
+                    Shop: {{orders.shop_title}}
+                  </div>
+                  <div>
+                    Due: {{orders.due}}৳
+                  </div>
+                  <div>
+                    Total: {{orders.total}}৳
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div *ngIf="orderDetails.length == 0 && loading === false">
+                <div class="order-box mb-2" >
+                  <div class="content p-3 bg-white theme-color ">
+                    <h5 class="text-center">No Data Found</h5>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+
+            <div class="activeOrders" *ngIf="orderStatus == 1">
+              <div *ngIf="orderDetails.length > 0 && loading === false">
+                <div class="order-box mb-2"  [hidden]="orders.status != 1" *ngFor="let orders of orderDetails; let index = index">
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <span class="theme-color btn" style="font-weight: 500;box-shadow: none;padding-left:0!important;"><span style="color: #191919"> Order ID:</span> {{orders.order_number}}</span>&nbsp; <span *ngIf="orders.payment_status != null" class="badge pl-2 pr-2 pt-1 pb-1 badge-success text-light" style="font-weight: 500!important;">Confirmed</span>
+                    </div>
+                    <div  class="float-right">
+                      <a [routerLink]="['/profile/orders',orders.order_number,'details']"  class="btn theme-color" style="box-shadow: none">Details</a>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div>
+                      Shop: {{orders.shop_title}}
+                    </div>
+                    <div>
+                      Due: {{orders.due}}৳
+                    </div>
+                    <div>
+                      Total: {{orders.total}}৳
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="orderDetails.length == 0 && loading === false">
+                <div class="order-box mb-2" >
+                  <div class="content p-3 bg-white theme-color ">
+                    <h5 class="text-center">No Data Found</h5>
+                  </div>
+                </div>
+              </div>
+
+              <br>
+            </div>
+
+            <div class="activeOrders" *ngIf="orderStatus == 2 ">
+              <div *ngIf="orderDetails.length > 0 && loading === false">
+                <div class="order-box mb-2"  [hidden]="orders.status != 2" *ngFor="let orders of orderDetails; let index = index">
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <span class="theme-color btn" style="font-weight: 500;box-shadow: none;padding-left:0!important;"><span style="color: #191919"> Order ID:</span> {{orders.order_number}}</span> <span *ngIf="orders.payment_status != null" class="badge pl-2 pr-2 pt-1 pb-1 badge-warning text-light" style="font-weight: 500!important;">On the way</span>
+                    </div>
+                    <div  class="float-right">
+                      <a [routerLink]="['/profile/orders',orders.order_number,'details']"  class="btn theme-color" style="box-shadow: none">Details</a>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div>
+                      Shop: {{orders.shop_title}}
+                    </div>
+                    <div>
+                      Due: {{orders.due}}৳
+                    </div>
+                    <div>
+                      Total: {{orders.total}}৳
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="orderDetails.length == 0 && loading === false">
+                <div class="order-box mb-2" >
+                  <div class="content p-3 bg-white theme-color ">
+                    <h5 class="text-center">No Data Found</h5>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+
+            <div class="activeOrders" *ngIf="orderStatus == 3">
+              <div *ngIf="orderDetails.length > 0 && loading === false">
+                <div class="order-box mb-2"  [hidden]="orders.status != 3" *ngFor="let orders of orderDetails; let index = index">
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <span class="theme-color btn" style="font-weight: 500;box-shadow: none;padding-left:0!important;"><span style="color: #191919"> Order ID:</span> {{orders.order_number}}</span> <span *ngIf="orders.payment_status != null" class="badge pl-2 pr-2 pt-1 pb-1 badge-primary text-light" style="font-weight: 500!important;">Delivered</span>
+                    </div>
+                    <div  class="float-right">
+                      <a [routerLink]="['/profile/orders',orders.order_number,'details']"  class="btn theme-color" style="box-shadow: none">Details</a>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div>
+                      Shop: {{orders.shop_title}}
+                    </div>
+                    <div>
+                      Due: {{orders.due}}৳
+                    </div>
+                    <div>
+                      Total: {{orders.total}}৳
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="orderDetails.length == 0 && loading === false">
+                <div class="order-box mb-2" >
+                  <div class="content p-3 bg-white theme-color ">
+                    <h5 class="text-center">No Data Found</h5>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+
+            <div class="activeOrders" *ngIf="orderStatus == 4">
+              <div *ngIf="orderDetails.length > 0 && loading === false">
+                <div class="order-box mb-2"  [hidden]="orders.status != 4" *ngFor="let orders of orderDetails; let index = index">
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <span class="theme-color btn" style="font-weight: 500;box-shadow: none;padding-left:0!important;"><span style="color: #191919"> Order ID:</span> {{orders.order_number}}</span>
+                      <span *ngIf="orders.payment_status == null" class="badge pl-2 pr-2 pt-1 pb-1 badge-danger text-light" style="font-weight: 500!important;">Cancelled</span>
+                    </div>
+                    <div  class="float-right">
+                      <a [routerLink]="['/profile/orders',orders.order_number,'details']"  class="btn theme-color" style="box-shadow: none">Details</a>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div>
+                      Shop: {{orders.shop_title}}
+                    </div>
+                    <div>
+                      Due: {{orders.due}}৳
+                    </div>
+                    <div>
+                      Total: {{orders.total}}৳
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="orderDetails.length == 0 && loading === false">
+                <div class="order-box mb-2" >
+                  <div class="content p-3 bg-white theme-color ">
+                    <h5 class="text-center">No Data Found</h5>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+
+            <div class="activeOrders" *ngIf="orderStatus == 5">
+              <div *ngIf="orderDetails.length > 0 && loading === false">
+                <div class="order-box mb-2"  [hidden]="orders.status != 5" *ngFor="let orders of orderDetails; let index = index">
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <span class="theme-color btn" style="font-weight: 500;box-shadow: none;padding-left:0!important;"><span style="color: #191919"> Order ID:</span> {{orders.order_number}}</span>
+                      <span *ngIf="orders.payment_status == null" class="badge pl-2 pr-2 pt-1 pb-1 badge-danger text-light" style="font-weight: 500!important;">Not Delivered</span>
+                    </div>
+                    <div class="notes">
+                      {{orders.note}}
+                    </div>
+                    <div  class="float-right">
+                      <a [routerLink]="['/profile/orders',orders.order_number,'details']"  class="btn theme-color" style="box-shadow: none">Details</a>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div>
+                      Shop: {{orders.shop_title}}
+                    </div>
+                    <div>
+                      Due: {{orders.due}}৳
+                    </div>
+                    <div>
+                      Total: {{orders.total}}৳
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="orderDetails.length == 0 && loading === false">
+                <div class="order-box mb-2" >
+                  <div class="content p-3 bg-white theme-color ">
+                    <h5 class="text-center">No Data Found</h5>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+
+            <div class="activeOrders">
+
+              <div  *ngIf="orderDetails.length == 0 && loading === true">
+                <div class="order-box mb-2" >
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <div class="ph-item abs" style="height: 20px; width: 100px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div  class="float-right">
+                      <div class="ph-item abs" style="height:20px;width: 100px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="order-box mb-2" >
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <div class="ph-item abs" style="height: 20px; width: 100px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div  class="float-right">
+                      <div class="ph-item abs" style="height:20px;width: 100px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="order-box mb-2" >
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <div class="ph-item abs" style="height: 20px; width: 100px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div  class="float-right">
+                      <div class="ph-item abs" style="height:20px;width: 100px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="order-box mb-2" >
+                  <div class="border-bottom bg-white p-3 clearfix d-block">
+                    <div class="d-inline-block">
+                      <div class="ph-item abs" style="height: 20px; width: 100px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div  class="float-right">
+                      <div class="ph-item abs" style="height:20px;width: 100px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="content p-3 bg-white  ">
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="ph-item abs" style="height:10px">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

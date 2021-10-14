@@ -1,0 +1,94 @@
+<div class="left-side-slider" *ngIf="topProduct.length > 0 && loadingTop === false">
+  <!--Slider Title-->
+  <div class="tab-products-header clearfix mb-4">
+    <ul class="tabs float-left">
+      <li class="tab-item active">
+        Top Seller
+      </li>
+    </ul>
+  </div>
+  <div class="wrapper">
+    <div class="top-sellers-slider owl-carousel">
+      <!--Slider Item-->
+
+      <div class="item2" *ngFor="let Allitems of topProduct">
+
+        <!--Inner Item-->
+        <div class="inner-item item-hover2" *ngFor="let items of Allitems">
+          <!--Image-->
+          <div class="item-image" *ngIf="items.images.length > 0">
+            <img src="{{items.images[0].small_image_path}}" alt="">
+            <div class="item-option">
+              <a href="javascript:void(0)" class="btn "><i class="lar la-eye"></i></a>
+            </div>
+          </div>
+          <div class="content">
+            <div class="name"><a [routerLink]="['product', items.slug]" ><span [innerText]="FormatText(items.title, 30)"></span></a></div>
+            <div class="price">
+              <ng-container *ngIf="items.discount_type === 0">
+                <span class="Price_Current "> {{items.variants[0].price}}৳</span>
+                <span class="Price_Was">{{((items.variants[0].price / 100) * items.discount_amount) + items.variants[0].price}}৳</span>
+                <span class="Reduce_Price">- {{items.discount_amount}}%</span>
+              </ng-container>
+              <ng-container *ngIf="items.discount_type === 1">
+                <span class="Price_Current "> {{items.variants[0].price}}৳</span>
+                <span class="Price_Was">{{items.variants[0].price + items.discount_amount}}৳</span>
+                <span class="Reduce_Price">- {{items.discount_amount}}৳</span>
+              </ng-container>
+              <ng-container *ngIf="items.discount_type === 2">
+                <span class="Price_Current "> {{items.variants[0].price}}৳</span>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="position-relative" *ngIf="loadingTop === true">
+  <!--Slider Title-->
+  <div class="tab-products-header clearfix mb-4">
+    <div class="ph-item abs">
+      <div class="ph-picture" style="min-height: 30px !important"></div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="top-sellers-slider ">
+      <!--Slider Item-->
+
+      <div class="item2" >
+
+        <!--Inner Item-->
+        <div class="inner-item item-hover2"  *ngFor="let number of [0,1,2,3,4]">
+          <!--Image-->
+          <div class="item-image" >
+            <div class="ph-item abs">
+              <div class="ph-picture">
+                <div class="brand-text-wrapper">
+                  <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="content">
+            <div class="name">
+              <div class="ph-item abs" style="height: 20px; width: 100% !important">
+                <div class="ph-picture" ></div>
+              </div>
+            </div>
+            <div class="price">
+              <div class="ph-item abs" style="height: 20px; width: 100% !important">
+                <div class="ph-picture" ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

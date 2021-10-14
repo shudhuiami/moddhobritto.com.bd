@@ -1,0 +1,41 @@
+
+
+
+<div class="landscape-tab-products-wrap clearfix"  *ngIf="shops.length > 0  && Loading == false">
+  <div class="container">
+    <div class="tab-products-header clearfix mb-4">
+      <ul class="tabs float-left">
+        <li class="tab-item active tab-title gradient-text-theme font-title-22">
+          Similar Shops
+        </li>
+      </ul>
+    </div>
+    <div class="top-brands-wrap">
+      <div class="top-brands">
+        <div class="row sm-gutters row-cols-lg-7 row-cols-md-5 row-cols-sm-4 row-cols-3"  *ngIf="shops.length > 0">
+          <div class="col mb-2" *ngFor="let eachShop of shops; let fIndex = index;">
+            <div class="each-brand">
+              <a  [routerLink]="['brands', eachShop.id]"   class="top-brand-image">
+                <img src="{{eachShop.logo_full_path}}" alt="Shop logo">
+                <span class="brand-title ">{{eachShop.title}}</span>
+              </a>
+            </div>
+          </div>
+          <div class="col mb-2" *ngIf="shops.length >20">
+            <div class="each-brand">
+              <div class="top-brand-image more-button">
+                <div class="btn-text ">View all Brands</div>
+                <a href="#"  class="btn btn-sm btn-outline-primary">
+                  View all <i class="la la-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

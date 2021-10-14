@@ -1,0 +1,487 @@
+<section class="checkout-section" style="margin: 10px 0">
+  <div class="checkout-info">
+    <div class="container" >
+      <div class="row">
+        <div class="col-lg-8 order-2 order-lg-1" *ngIf="loading === false">
+          <div *ngIf="Order != null">
+            <div class="order-wrap all-products p-4">
+              <div class="m-section__content">
+                <table class="table table-responsive table-bordered">
+                  <thead>
+                  <tr>
+                    <th style="min-width: 150px">Product Logo</th>
+                    <th style="min-width: 150px">Product Name</th>
+                    <th style="min-width: 150px">Quantity</th>
+                    <th style="min-width: 150px">Unit Price</th>
+                    <th style="min-width: 150px" class="text-right">Total Price</th>
+                  </tr>
+                  </thead>
+                  <tbody class="" *ngIf="Order.products.length > 0">
+                  <tr *ngFor="let each of Order.products">
+                    <ng-container *ngIf=" each.product != null">
+                      <td>
+                        <img style="width: 100px" *ngIf="each.product.images.length > 0 && each.product.images != null " class="m-widget7__img" src="{{each.product.images[0].small_image_path}}"  alt="">
+                      </td>
+                      <td>
+                        <div>{{each.product.title}} <br>
+
+                          <div style="font-size: 12px; color: #b1b1b4; margin-bottom: 5px">Variant: {{each.product.variant_title}}</div>
+                          <div style="font-size: 12px; color: #b1b1b4; margin-bottom: 5px">{{each.product.cart_requirements}}</div></div>
+                      </td>
+                      <td>
+                        <div>{{each.quantity}}</div>
+                      </td>
+                      <td>
+                        <div>{{each.unit_price}}</div>
+                      </td>
+                      <td class="text-right">
+                        <div>{{each.total_price}}</div>
+                      </td>
+                    </ng-container>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 order-2 order-lg-1" *ngIf="loading === true">
+          <div class="bg-white container pt-3 pb-3 mb-2">
+            <div class="ph-item abs" style="height: 30px; width: 100px">
+              <div class="ph-picture "  ></div>
+            </div>
+          </div>
+          <div >
+            <div class="all-products">
+              <div class="shop-wrap mb-4" *ngFor="let number of [1,2,3]">
+                <div class="shop-name p-4" >
+                  <label class="container">
+                    <div class="ph-item abs" style="height: 30px; width: 200px">
+                      <div class="ph-picture "  ></div>
+                    </div>
+                  </label>
+                </div>
+                <div class="product-wrap " >
+                  <div class="each-product d-flex justify-content-between"  *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
+                    <div class="product-image">
+                      <div class="ph-item abs">
+                        <div class="ph-picture">
+                          <div class="brand-text-wrapper">
+                            <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-name_features">
+                      <div class="name"><a href="javascript:void(0)" >
+                        <div class="ph-item abs" style="height: 30px; width: 200px">
+                          <div class="ph-picture "  ></div>
+                        </div>
+                      </a></div>
+                    </div>
+                    <div class="d-flex  justify-content-between">
+                      <div class="product-price_delete_wishlist">
+                        <div class="price">
+                          <div class="ph-item abs mr-3" style="height: 30px; width: 70px">
+                            <div class="ph-picture "  ></div>
+                          </div>
+                        </div>
+                        <div class="actions d-flex justify-content-between">
+                          <div class="ph-item abs mb-3 mr-3" style="height: 30px; width: 30px">
+                            <div class="ph-picture "  ></div>
+                          </div>
+                          <div class="ph-item abs mr-3" style="height: 30px; width: 30px">
+                            <div class="ph-picture "  ></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="product-quantity">
+                        <div class="ph-item abs mr-3" style="height: 30px; width: 70px">
+                          <div class="ph-picture "  ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-4 order-1 order-lg-2 mb-5" *ngIf="Order != null && loading === false">
+
+          <div class="order-wrap p-4">
+            <div class="m-widget3__body">
+
+              <div class="p-3">
+                <div class="detail">
+                  <div class="title">Name:</div>
+                  <div class="content">{{ Order.user.name }}</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Email:</div>
+                  <div class="content">{{ Order.user.email }}</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Phone:</div>
+                  <div class="content">{{ Order.user.phone }}</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Order ID:</div>
+                  <div class="content"> {{ Order.order_number }}</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Region:</div>
+                  <div class="content">{{Order.address.street}}, {{Order.address.area.name}}, {{Order.address.district.name}}, {{Order.address.division.name}}</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Delivery Charge:</div>
+                  <div class="content"> {{ Order.delivery_charge }}৳</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Sub Total:</div>
+                  <div class="content"> {{ Order.sub_total }}৳</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Paid:</div>
+                  <div class="content"> {{ Order.paid }}৳</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Due:</div>
+                  <div class="content"> {{ Order.due }}৳</div>
+                </div><br>
+                <div class="detail">
+                  <div class="title">Total:</div>
+                  <div class="content"> {{ Order.total }}৳</div>
+                </div><br>
+              </div>
+            </div>
+          </div>
+          <div class="order-wrap p-4" >
+
+            <div class=" shopping_billing">
+              <div class="title">Order Cost Detail</div>
+              <div>
+                <div class="total d-flex justify-content-between">
+                  <span>Total </span><span>{{Order.sub_total}}৳</span>
+                </div>
+                <div class="total d-flex justify-content-between" >
+                  <span>Shipping </span><span >{{Order.delivery_charge}}৳</span>
+                </div>
+                <div class="w-100 text-right">
+                  <span>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</span>
+                </div>
+                <div class="total d-flex justify-content-between" >
+                  <span>Grand Total </span><span>{{Order.total}}৳</span>
+                </div>
+
+              </div>
+              <br>
+              <br>
+<!--              <div class="title">Payment</div>-->
+            </div>
+            <!--<div>
+              <input id="cod" [checked]="Order.payment_method == 'cash'"  type="radio" name="pay">
+              <label for="cod" style="margin-left: 15px;">Cash on delivery</label>
+            </div>
+            <div>
+              <input id="online"  [checked]="Order.payment_method !== 'cash'" type="radio" name="pay" (change)="Order.payment_method = 'online'">
+              <label for="online" style="margin-left: 15px;" >Online Payment</label>
+            </div>
+            <div class="order-submit-btn" >
+              <button class="btn"  *ngIf="Order.payment_method !== 'cash' && Order.payment_status !== 2"  (click)="paymentModal()">Make payment</button>
+            </div>
+            <br>-->
+            <div *ngIf="Order.payment_status == 2">
+              <strong>Payment Status: </strong> <span>Paid</span>
+            </div>
+            <div *ngIf="Order.payment_status == 1">
+              <strong>Payment Status: </strong> <span>Partially Paid</span>
+            </div>
+          </div>
+          <br>
+          <div class="order-wrap p-4"  *ngIf="Order != null">
+            <div class="shopping_billing">
+                <div class="title">
+                  Payment
+                </div>
+              <div class="payment-icon">
+                <div class="row sm-gutters  ">
+                  <div class="col mb-1" *ngIf="Order.cash_on_delivery == 1">
+                    <a class="box-wrap"  [class.active] = "Order.payment_method == 'cash'" (click)="selectMethod('cash', 2, 0)">
+                      <div class="icon-box"><i style="font-size: 50px" class="las la-money-bill"></i>
+                        <div class="icon-title">Cash on Delivery</div>
+                      </div>
+                    </a>
+                  </div>
+                    <div class="col mb-1 " *ngIf="Order.partially_payment == 1">
+                      <a class="box-wrap"   [class.active] = "Order.payment_method == 'partial_payment'" (click)="selectMethod('partial_payment', 2, 1)">
+                        <div class="icon-box" ><img src="../../../assets/img/surjopay.png"  alt="">
+                          <div class="icon-title" > Partial payment</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="col mb-1 " *ngIf="Order.full_payment == 1">
+                      <a class="box-wrap" [class.active] = "Order.payment_method == 'full_payment'" (click)="selectMethod('full_payment', 2, 2)">
+                        <div class="icon-box" ><img src="../../../assets/img/surjopay.png"  alt="">
+                          <div class="icon-title" > Full Payment</div>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mt-3">
+                    <div class="order-submit-btn" >
+                      <button class="btn"  *ngIf="Order.payment_method == 'cash' && PaymentLoading == false"(click)="confirmOrder('cash')">Confirm Order</button>
+                    </div>
+                  </div>
+                  <div class="col-12 ">
+                    <div class="order-submit-btn" >
+                      <button class="btn"  *ngIf="Order.payment_method !== 'cash' && PaymentLoading == false"  (click)="confirmOrder('online')">Confirm Order</button>
+                    </div>
+                  </div>
+                  <div class="col-12 ">
+                    <div class="order-submit-btn" >
+                      <button class="btn"  *ngIf=" PaymentLoading == true" >  <i class="las la-spinner la-spin"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 order-1 order-lg-2 mb-5" *ngIf="loading == true">
+          <div class="order-wrap p-4">
+            <div class=" shopping_billing">
+              <div class="title">
+                <div class="ph-item abs" style="height: 30px;">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </div>
+              <div class="showAddress" ><a href="javascript:void(0)">
+                <div class="ph-item abs" style="height: 20px; width: 200px">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a></div>
+              <div class="previewAddress">
+                <div class="full-address">
+                  <div class="ph-item abs" style="height: 20px;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="ph-item abs" style="height: 20px;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <div class="ph-item abs" style="height: 20px;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+              </div>
+              <!--            <div class="email"><i class="lar la-envelope"></i> {{Auth.email}}</div>-->
+            </div>
+            <div class="order-summary" >
+              <div class="order_summary_title">
+                <div class="ph-item abs" style="height: 20px;">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </div>
+              <div >
+                <div class="total d-flex justify-content-between">
+                <span>
+                  <div class="ph-item abs" style="height: 20px; width: 100%">
+                  <div class="ph-picture "  ></div>
+                </div>
+                </span><span>
+                <div class="ph-item abs" style="height: 20px; width: 50px">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </span>
+                </div>
+                <div class="total d-flex justify-content-between" >
+                <span>
+                  <div class="ph-item abs" style="height: 20px; width: 50px">
+                  <div class="ph-picture "  ></div>
+                </div>
+                </span><span >
+                <div class="ph-item abs" style="height: 20px; width: 50px" >
+                  <div class="ph-picture "  ></div>
+                </div>
+              </span>
+                </div>
+                <div class="w-100 text-right">
+                <span><div class="ph-item abs" style="height: 20px;">
+                  <div class="ph-picture "  ></div>
+                </div></span>
+                </div>
+                <div class="total d-flex justify-content-between" >
+                  <div class="ph-item abs" style="height: 20px;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="order-submit-btn" >
+              <div class="ph-item abs" style="height: 20px;">
+                <div class="ph-picture "  ></div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="order-wrap p-4" >
+
+            <div class=" shopping_billing">
+              <div class="title">
+                <div class="ph-item abs" style="height: 30px;">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="total d-flex justify-content-between">
+                  <div class="ph-item abs" style="height: 20px;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+                <br>
+                <div class="total d-flex justify-content-between" >
+                  <div class="ph-item abs" style="height: 10px;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+                <br>
+                <div class="w-100 text-right">
+                  <div class="ph-item abs" style="height: 5px;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+                <br>
+                <div class="total d-flex justify-content-between" >
+                  <div class="ph-item abs" style="height: 20px;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+
+              </div>
+              <br>
+              <br>
+              <!--              <div class="title">Payment</div>-->
+            </div>
+          </div>
+          <br>
+          <div class="order-wrap p-4" >
+            <div class="shopping_billing">
+              <div class="payment-icon">
+                <div class="row sm-gutters  ">
+                  <div class="col mb-1" >
+                    <a class="box-wrap"  >
+                      <div class="icon-box">
+                        <div class="ph-item abs">
+                          <div class="ph-picture">
+                            <div class="brand-text-wrapper">
+                              <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col mb-1" >
+                    <a class="box-wrap"  >
+                      <div class="icon-box">
+                        <div class="ph-item abs">
+                          <div class="ph-picture">
+                            <div class="brand-text-wrapper">
+                              <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col mb-1" >
+                    <a class="box-wrap"  >
+                      <div class="icon-box">
+                        <div class="ph-item abs">
+                          <div class="ph-picture">
+                            <div class="brand-text-wrapper">
+                              <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mt-3">
+                    <div class="order-submit-btn" >
+                      <div class="ph-item abs" style="height: 40px;">
+                        <div class="ph-picture "  ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal " id="addpay">
+      <div class="modal-dialog" >
+        <div class="modal-content p-4">
+          <div class="modal-header mb-2 ">
+            <h4 class="modal-title theme-color" *ngIf="advancedPay == true">Amount</h4>
+            <button type="button" class="close" (click)="closeAddAddressModal()" data-dismiss="modal" aria-label="Close">
+              <span >&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="payment-icon ">
+              <div class="row">
+                <div class="col text-center">
+                  <a class="box-wrap" style="display: inline-block; float: none; width: 180px"   *ngIf="advancedPay == false"  (click)="advancedPay = true">
+                    <div class="icon-box" style="height: 120px!important;"><img src="../../../assets/img/advance.png" style="width: 70px" alt=""></div>
+                    <div class="icon-title" style="width: 180px;">Make Advanced Payment</div>
+                  </a>
+                </div>
+                <div class="col text-center">
+                  <a class="box-wrap" *ngIf="advancedPay == false" (click)="fullPay(Order, 1)" style="display: inline-block;float: none; width: 180px">
+                    <div class="icon-box" style="height: 120px!important;"><img src="../../../assets/img/paynew.png" style="width: 80px" alt=""></div>
+                    <div class="icon-title" style="width: 180px;">Make Full Payment</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="advancedPay == true">
+              <input type="number" class="form-control" [(ngModel)]="partialAmount" placeholder="Payment Amount">
+              <br>
+              <button class="btn btn-primary mb-3 mr-3" (click)="fullPay(Order, 2)">Submit</button>
+              <button class="btn btn-primary mb-3" (click)="advancedPay = false">Go Back</button>
+            </div>
+            <!--<div class="text-center">
+              <button class="btn btn-primary mb-3" *ngIf="advancedPay == false" (click)="fullPay(Order, 1)">Make full Payment</button>
+              <br>
+              <button class="btn btn-primary mb-3" (click)="advancedPay = true">Make Advanced Payment</button>
+              <div *ngIf="advancedPay == true">
+                <input type="number" class="form-control" [(ngModel)]="partialAmount" placeholder="Payment Amount">
+                <br>
+                <button class="btn btn-primary mb-3" (click)="fullPay(Order, 2)">Submit</button>
+              </div>
+
+            </div>-->
+              <div class="modal-footer" style="border: none">
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+

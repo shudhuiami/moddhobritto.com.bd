@@ -1,0 +1,112 @@
+
+<style>
+  body {
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.7);
+    background-blend-mode: overlay;
+  }
+
+  .coming-soon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+  }
+
+  .coming-soon h1 {
+    display: inline-block;
+    font-size: 60px;
+    padding: 16px 40px;
+    margin-bottom: 40px;
+    color: #fff;
+    /*animation: text-animation 3s ease-in-out forwards;*/
+  }
+
+  .coming-soon .ctdown {
+    font-weight: 700;
+    font-size: 42px;
+    display: flex;
+    justify-content: center;
+    min-height: 160px;
+    transition: opacity 3s ease-in-out;
+  }
+
+  .time-box {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0, 0.7);
+    width: 160px;
+    height: 160px;
+  }
+
+  .time-box:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  .time-box span {
+    font-size: 18px;
+    font-weight: 200;
+  }
+
+  @keyframes text-animation {
+    from {
+      transform: scale(0) rotateY(0deg);
+    }
+    to {
+      transform: scale(1) rotateY(720deg);
+    }
+  }
+</style>
+<body>
+<section *ngIf="background == 1" class="wrapper" style="background-image: url('./assets/dummy/tour.jpg')">
+  <div class="coming-soon">
+    <h1>C O M I N G &nbsp;&nbsp;&nbsp; S O O N</h1>
+    <div class="ctdown">
+      <div class="time-box">{{days}} <span>days</span></div>
+      <div class="time-box">{{hours}} <span>hours</span></div>
+      <div class="time-box">{{minutes}} <span>minutes</span></div>
+      <div class="time-box">{{seconds}} <span>seconds</span></div>
+    </div>
+  </div>
+</section>
+<section *ngIf="background == 2" class="wrapper" style="background-image: url('./assets/dummy/event.jpg')">
+  <div class="coming-soon">
+    <h1>C O M I N G &nbsp;&nbsp;&nbsp; S O O N</h1>
+    <div class="ctdown">
+      <div class="time-box">{{days}} <span>days</span></div>
+      <div class="time-box">{{hours}} <span>hours</span></div>
+      <div class="time-box">{{minutes}} <span>minutes</span></div>
+      <div class="time-box">{{seconds}} <span>seconds</span></div>
+    </div>
+  </div>
+</section>
+<section *ngIf="background == 3" class="wrapper" style="background-image: url('./assets/dummy/motor.jpg')">
+  <div class="coming-soon">
+    <h1>C O M I N G &nbsp;&nbsp;&nbsp; S O O N</h1>
+    <div class="ctdown">
+      <div class="time-box">{{days}} <span>days</span></div>
+      <div class="time-box">{{hours}} <span>hours</span></div>
+      <div class="time-box">{{minutes}} <span>minutes</span></div>
+      <div class="time-box">{{seconds}} <span>seconds</span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+

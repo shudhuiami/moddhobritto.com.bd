@@ -1,0 +1,414 @@
+<section class="checkout-section ">
+  <div class="checkout-info" style="margin-top: 10px">
+    <div class="container" >
+
+      <div class="row">
+        <div class="col-lg-8 order-2 order-lg-1" *ngIf="loading === false">
+          <div class="bg-white container pt-3 pb-3 mb-2">
+            Total Items: {{cartData.total_products}}
+          </div>
+          <div >
+          <div class="all-products" *ngIf="cartData.cartList.length > 0">
+            <div class="shop-wrap mb-4" *ngFor="let shopData of cartData.cartList; let index = index">
+              <div class="shop-name p-4" >
+                <label class="container">
+                  <input type="radio" name="shop"  [checked]="shopData.shop_id == orderParam.shop_id"  (change)="getData(shopData.shop_id)"><span class="checkmark"></span>
+                 <span *ngIf="shopData.shop != null">  {{shopData.shop.title}}</span>
+                 <span *ngIf="shopData.shop == null">    Public Products</span>
+                </label>
+              </div>
+              <div class="product-wrap " *ngIf="shopData.products.length > 0">
+                <div class="each-product d-flex justify-content-between" *ngFor="let shopProduct of shopData.products; let product_index = index;">
+                  <div *ngIf="shopProduct.images.length > 0" class="product-image" [style.background-image]="'url(' + shopProduct.images[0].small_image_path + ')'" ></div>
+                  <div class="product-name_features">
+                    <div class="name"><a href="javascript:void(0)"  [innerHTML]="shopProduct.title"></a></div>
+                    <div style="font-size: 12px; color: #b1b1b4; margin-bottom: 5px">Variant: {{shopProduct.variant_title}}</div>
+                    <div style="font-size: 12px; color: #b1b1b4; margin-bottom: 5px">{{shopProduct.cart_requirements}}</div>
+                  </div>
+                  <div class="d-flex  justify-content-between">
+                    <div class="product-price_delete_wishlist">
+                      <div class="price">
+                        {{shopProduct.cart_quantity * shopProduct.sell_price}}৳
+                      </div>
+                      <div class="actions d-flex justify-content-between">
+                        <button title="Wishlist" class="btn btn-wishlist" tabindex="0" *ngIf="shopProduct.wished < 1" (click)="addToWishlist($event, shopProduct.id, index, product_index)">
+                          <i class="la-heart lar"></i>
+                        </button>
+                        <button title="Wishlist"  class="btn btn-wishlist wishlist_active" tabindex="0" *ngIf="shopProduct.wished > 0" (click)="deleteWishList($event, shopProduct.id, index, product_index)">
+                          <i class="las la-heart"></i>
+                        </button>
+                      <button title="Delete" class="btn btn-trash" tabindex="0" (click)="deleteCartItem($event, shopProduct.id, index)"><i class="las la-trash"></i></button>
+                      </div>
+                    </div>
+                    <div class="product-quantity">
+                    <button  (click)="addToCartCheckOut($event, shopProduct.id, -1 ,index, shopProduct.variant_id)">-</button>
+                    <input type="number"  value="{{shopProduct.cart_quantity}}">
+                    <button  (click)="addToCartCheckOut($event, shopProduct.id, 1 ,index, shopProduct.variant_id)">+</button>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8 order-2 order-lg-1" *ngIf="loading === true">
+          <div class="bg-white container pt-3 pb-3 mb-2">
+            <div class="ph-item abs" style="height: 30px; width: 100px">
+              <div class="ph-picture "  ></div>
+            </div>
+          </div>
+          <div >
+            <div class="all-products">
+              <div class="shop-wrap mb-4" *ngFor="let number of [1,2,3]">
+                <div class="shop-name p-4" >
+                  <label class="container">
+                    <div class="ph-item abs" style="height: 30px; width: 200px">
+                      <div class="ph-picture "  ></div>
+                    </div>
+                  </label>
+                </div>
+                <div class="product-wrap " >
+                  <div class="each-product d-flex justify-content-between"  *ngFor="let number of [1,2,3]">
+                    <div class="product-image">
+                      <div class="ph-item abs">
+                        <div class="ph-picture">
+                          <div class="brand-text-wrapper">
+                            <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-name_features">
+                      <div class="name"><a href="javascript:void(0)" >
+                        <div class="ph-item abs" style="height: 30px; width: 200px">
+                          <div class="ph-picture "  ></div>
+                        </div>
+                      </a></div>
+                    </div>
+                    <div class="d-flex  justify-content-between">
+                      <div class="product-price_delete_wishlist">
+                        <div class="price">
+                          <div class="ph-item abs mr-3" style="height: 30px; width: 70px">
+                            <div class="ph-picture "  ></div>
+                          </div>
+                        </div>
+                        <div class="actions d-flex justify-content-between">
+                          <div class="ph-item abs mb-3 mr-3" style="height: 30px; width: 30px">
+                            <div class="ph-picture "  ></div>
+                          </div>
+                          <div class="ph-item abs mr-3" style="height: 30px; width: 30px">
+                            <div class="ph-picture "  ></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="product-quantity">
+                        <div class="ph-item abs mr-3" style="height: 30px; width: 70px">
+                          <div class="ph-picture "  ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-4 order-1 order-lg-2 mb-5" *ngIf="loading === false">
+          <div class="order-wrap p-4">
+          <div class=" shopping_billing">
+            <div class="title">Shipping & Billing</div>
+            <div class="showAddress" *ngIf="allAddress.length === 0"><a href="javascript:void(0)" (click)="openAddressMOdal()">Add Address</a></div>
+            <small class="form-control-feedback text-danger"  *ngIf="errors !== null && errors.address_id !== undefined" [innerHTML]="errors.address_id[0]"></small>
+            <div class="previewAddress" *ngIf="this.IsEmptyCheck(previewAddress) !== false">
+              <div class="full-address">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="name"><i class="las la-map-marker theme-color mr-1"></i> <span style="font-weight: 500">{{previewAddress.name}}</span></div>
+                  <div class="showAddress"><a href="javascript:void(0)" (click)="openAddressMOdal()">Edit</a></div>
+                </div>
+                <div class=" p-3">
+                  <span>{{previewAddress.street}},</span>&nbsp; <span>{{previewAddress.area_name}},</span>&nbsp; <span>{{previewAddress.district_name}},</span>&nbsp; <span>{{previewAddress.division_name}}</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone" class="theme-color">Phone:</label>
+                <input type="text" id="phone" class="form-control" disabled [(ngModel)]="previewAddress.phone">
+              </div>
+              <div class="form-group" *ngIf="email != null">
+                <label for="email" class="theme-color">Email:</label>
+                <input type="email" id="email" class="form-control" disabled [(ngModel)]="email">
+              </div>
+            </div>
+<!--            <div class="email"><i class="lar la-envelope"></i> {{Auth.email}}</div>-->
+          </div>
+          <div class="order-summary" *ngIf="ShopProduct != null">
+            <div class="order_summary_title">Order Summary</div>
+            <div >
+              <div class="total d-flex justify-content-between">
+                <span>Total ({{ShopProduct.totalAmount}} Items)</span><span>{{ShopProduct.totalAmount}}৳</span>
+              </div>
+              <div class="total d-flex justify-content-between" >
+                <span>Shipping </span><span >{{shippingPrice}}৳</span>
+              </div>
+              <div class="w-100 text-right">
+                <span>-------------------------------------</span>
+              </div>
+              <div class="total d-flex justify-content-between" >
+                <span>Grand Total </span><span>{{ShopProduct.totalAmount + shippingPrice}}৳</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-submit-btn" >
+            <a class="btn" (click)="createOrders($event)" *ngIf=" btnLoading === false">Proceed to payment</a>
+            <a class="btn"  *ngIf="  btnLoading === true"><i class="las la-spinner la-spin"></i></a>
+          </div>
+          </div>
+        </div>
+        <div class="col-lg-4 order-1 order-lg-2 mb-5" *ngIf="loading === true">
+          <div class="order-wrap p-4">
+          <div class=" shopping_billing">
+            <div class="title">
+              <div class="ph-item abs" style="height: 30px;">
+                <div class="ph-picture "  ></div>
+              </div>
+            </div>
+            <div class="showAddress" ><a href="javascript:void(0)">
+              <div class="ph-item abs" style="height: 20px; width: 200px">
+                <div class="ph-picture "  ></div>
+              </div>
+            </a></div>
+            <div class="previewAddress">
+              <div class="full-address">
+                <div class="ph-item abs" style="height: 20px;">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="ph-item abs" style="height: 20px;">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </div>
+              <div class="form-group" >
+                <div class="ph-item abs" style="height: 20px;">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </div>
+            </div>
+<!--            <div class="email"><i class="lar la-envelope"></i> {{Auth.email}}</div>-->
+          </div>
+          <div class="order-summary" >
+            <div class="order_summary_title">
+              <div class="ph-item abs" style="height: 20px;">
+                <div class="ph-picture "  ></div>
+              </div>
+            </div>
+            <div >
+              <div class="total d-flex justify-content-between">
+                <span>
+                  <div class="ph-item abs" style="height: 20px; width: 100%">
+                  <div class="ph-picture "  ></div>
+                </div>
+                </span><span>
+                <div class="ph-item abs" style="height: 20px; width: 50px">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </span>
+              </div>
+              <div class="total d-flex justify-content-between" >
+                <span>
+                  <div class="ph-item abs" style="height: 20px; width: 50px">
+                  <div class="ph-picture "  ></div>
+                </div>
+                </span><span >
+                <div class="ph-item abs" style="height: 20px; width: 50px" >
+                  <div class="ph-picture "  ></div>
+                </div>
+              </span>
+              </div>
+              <div class="w-100 text-right">
+                <span><div class="ph-item abs" style="height: 20px;">
+                  <div class="ph-picture "  ></div>
+                </div></span>
+              </div>
+              <div class="total d-flex justify-content-between" >
+                <div class="ph-item abs" style="height: 20px;">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order-submit-btn" >
+            <div class="ph-item abs" style="height: 20px;">
+              <div class="ph-picture "  ></div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal " id="addAddress" >
+    <div class="modal-dialog" >
+      <div class="modal-content p-4">
+        <div class="modal-header mb-2 ">
+          <h4 class="modal-title">ADD ADDRESS</h4>
+          <button type="button" class="close" (click)="closeAddAddressModal()" data-dismiss="modal" aria-label="Close">
+            <span >&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="createdAddress()">
+            <div class="form-group mb-3">
+              <input type="text" placeholder="Home, Office..." name="title" class="form-control create-form" [(ngModel)]="AddAddress.title">
+              <div class="invalid-feedback"></div>
+            </div>
+
+
+
+            <div class="form-group mb-3">
+              <input type="text" placeholder="01XXXXXXXXX" class="form-control create-form  " name="phone" [(ngModel)]="AddAddress.phone">
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group mb-3">
+              <select class="form-control  create-form"  name="division" [(ngModel)]="AddAddress.division" (ngModelChange)="getAllDistrict()" >
+                <option value="" selected>Select Division</option>
+                <option  *ngFor="let divisions of division " value="{{divisions.id}}">{{divisions.name}}</option>
+              </select>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group mb-3">
+              <select class="form-control  create-form"  name="district"  [(ngModel)]="AddAddress.district" (ngModelChange)="getAllArea()">
+                <option value="" selected>Select District</option>
+                <option  *ngFor="let cities of district " value="{{cities.id}}">{{cities.name}}</option>
+              </select>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group mb-3">
+              <select class="form-control  create-form"  name="area"  [(ngModel)]="AddAddress.area">
+                <option value="" selected>Select Area</option>
+                <option  *ngFor="let areas of area " value="{{areas.id}}">{{areas.name}}</option>
+              </select>
+              <div class="invalid-feedback"></div>
+            </div>
+
+
+
+            <div class="form-group mb-3">
+              <input type="text" placeholder="Zip Code" class="form-control create-form" name="zip" [(ngModel)]="AddAddress.zip">
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group mb-3">
+              <input type="text" placeholder="Street Address" class="form-control create-form" name="street" [(ngModel)]="AddAddress.street">
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="modal-footer" style="border: none">
+              <button *ngIf=" loading=== false " type="submit" class="btn btn-primary btn-block"  >ADD</button>
+              <button *ngIf=" loading=== true" type="button" disabled data-loading="" class="btn btn-primary btn-block">
+                <i class="las la-spinner"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal " id="addressList" >
+    <div class="modal-dialog modal-lg" >
+      <div class="modal-content p-4">
+        <div class="modal-header mb-2 ">
+          <h4 class="modal-title">Shipping Address</h4>
+          <button type="button" class="close" (click)="closeAddressModal()" data-dismiss="modal" aria-label="Close">
+            <span >&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group clearfix">
+            <a href="javascript:void(0)" class="float-right" (click)="CreateAddressModal()">Add Address</a>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover" style="font-size: 14px">
+            <thead>
+              <tr>
+                <th style="width: 150px!important; min-height: 70px">Home Address</th>
+                <th style="width: 150px!important;min-height: 70px">Region</th>
+                <th style="width: 150px!important;min-height: 70px">Phone</th>
+                <th style="width: 150px!important;min-height: 70px"></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="allAddress.length != null">
+            <tr *ngFor="let addressData of allAddress; let index = index ">
+              <td >
+                <div>
+                  {{addressData.title}}
+                </div>
+              </td>
+              <td >
+                <div>
+                  {{addressData.division_name}},{{addressData.district_name}},{{addressData.area_name}} - {{addressData.zip}}
+                </div>
+              </td>
+              <td >
+                <div>
+                  {{addressData.phone}}
+                </div>
+              </td>
+              <td >
+                <div class="text-center d-flex justify-content-center align-items-center">
+                  <div class="form-check">
+                    <label class="form-check-label">
+<!--                      <input type="radio"  name="selectAddress"   (change)="ChooseAddress(addressData, index)">-->
+                      <button class="btn btn-primary" (click)="ChooseAddress(addressData, index)">Select</button>
+                    </label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr  *ngIf="allAddress.length == 0" class="tableInfo">
+              <td colspan="10" class="text-center">No Data Found</td>
+            </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="modal " id="activeError" >
+  <div class="modal-dialog" >
+    <div class="modal-content p-4">
+      <div class="modal-header mb-2 ">
+        <h4 class="modal-title"></h4>
+        <button type="button" class="close" (click)="closeActiveModal()" data-dismiss="modal" aria-label="Close">
+          <span >&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="form-group ">
+            <p class="text-center">{{activeError}}</p>
+          </div>
+          <div class="form-group">
+            <a [routerLink]="['/profile']" class="btn btn-block btn-primary">Active your account</a>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

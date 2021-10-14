@@ -1,0 +1,62 @@
+<div class="product-card-wrapper">
+  <div class="product-card-actions" *ngIf="Auth == null">
+
+    <!--Wishlist-->
+    <button title="Wishlist"  class="btn btn-wishlist " tabindex="0"(click)="openModal()">
+      <i class="la-heart lar"></i>
+    </button>
+    <!--Wishlist-->
+    <!--Add To Cart-->
+    <button title="Add To Cart" class="btn btn-at-to-cart" tabindex="0" (click)="showAddCartModal(eachProduct)">
+      <i class="las la-cart-plus"></i>
+    </button>
+  </div>
+  <div class="product-card-actions" *ngIf="Auth != null">
+
+    <button title="Wishlist" class="btn btn-wishlist" tabindex="0" *ngIf="eachProduct.wished == -1" (click)="addToWishlist($event, eachProduct.id, cIndex, fIndex, innerIndex)">
+      <i class="las la-spinner la-spin"></i>
+    </button>
+    <button title="Wishlist" class="btn btn-wishlist" tabindex="0" *ngIf="eachProduct.wished == null" (click)="addToWishlist($event, eachProduct.id, cIndex, fIndex, innerIndex)">
+      <i class="la-heart lar"></i>
+    </button>
+    <button title="Wishlist"  class="btn btn-wishlist wishlist_active" tabindex="0" *ngIf="eachProduct.wished > 0" (click)="deleteWishList($event, eachProduct.id, cIndex, fIndex, innerIndex)">
+      <i class="las la-heart"></i>
+    </button>
+    <button title="Add To Cart" class="btn btn-at-to-cart" tabindex="0" (click)="showAddCartModal(eachProduct)"><i class="las la-cart-plus"></i></button>
+  </div>
+  <a  class="product-card" [routerLink]="eachProduct.shop != null ? ['/', eachProduct.shop.slug, 'product', eachProduct.slug] : ['/public-product', eachProduct.category_slug, 'public-single-product', eachProduct.slug]">
+    <div class="product-card-top">
+      <div
+         class="product-image" tabindex="0" *ngIf="eachProduct.images.length > 0">
+        <img class="img1" src="{{eachProduct.images[0].medium_image_path}}" alt="product image" *ngIf="eachProduct.images[0] != undefined">
+        <ng-container *ngIf="eachProduct.images.length == 1">
+          <img class="img2" src="{{eachProduct.images[0].medium_image_path}}" alt="product image" *ngIf="eachProduct.images[0] != undefined">
+        </ng-container>
+        <ng-container *ngIf="eachProduct.images.length > 1">
+          <img class="img2" src="{{eachProduct.images[1].medium_image_path}}" alt="product image" *ngIf="eachProduct.images[1] != undefined">
+        </ng-container>
+      </div>
+      <ul class="list-inline product-badge"></ul>
+    </div>
+    <div class="product-card-middle">
+      <div  class="product-name" tabindex="0"><h5 [innerHTML]="eachProduct.title"></h5></div>
+    </div>
+    <div class="product-card-bottom">
+      <div class="btn-price" tabindex="0">
+        <ng-container *ngIf="eachProduct.discount_type == 0">
+           <span class="Price_Current "> {{price_current}}৳</span>
+           <span class="Price_Was">{{price_was}}৳</span>
+           <span class="Reduce_Price">- {{reduce_price}}%</span>
+        </ng-container>
+        <ng-container *ngIf="eachProduct.discount_type == 1">
+           <span class="Price_Current "> {{price_current}}৳</span>
+           <span class="Price_Was">{{price_was}}৳</span>
+           <span class="Reduce_Price">- {{reduce_price}}৳</span>
+        </ng-container>
+        <ng-container *ngIf="eachProduct.discount_type == 2">
+           <span class="Price_Current "> {{price_current}}৳</span>
+        </ng-container>
+      </div>
+    </div>
+  </a>
+</div>

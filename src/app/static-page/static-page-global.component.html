@@ -1,0 +1,14 @@
+<section class="custom-page-wrap clearfix" *ngIf="details !== null">
+    <div class="bannar"[style.background-image]="'url(' + details.banner_full_path + ')'">
+      <div class="container">
+        <div class="banner-wrap">
+          <div class="banner-title" [innerHTML]="details.title"></div>
+          <div class="banner-desc" [innerHTML]="details.description"></div>
+        </div>
+      </div>
+  </div>
+  <div class="container" [innerHTML]="details.page_contents">
+
+
+  </div>
+</section>

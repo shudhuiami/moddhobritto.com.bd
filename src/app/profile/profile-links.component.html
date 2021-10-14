@@ -1,0 +1,39 @@
+
+<div class="profile-links">
+  <ul>
+    <li><a [routerLink]="'/profile'" >
+                            <span class="las la-user">
+                            </span>
+      <span>Profile</span>
+    </a></li>
+
+    <li>
+      <a href="javascript:void (0)" [routerLink]="['/profile/orders']">
+        <span class="las la-credit-card"> </span>
+        <span>Orders</span>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/profile/edit']">
+        <span class="las la-user"></span>
+        <span>Edit Profile</span>
+      </a>
+    </li>
+    <li><a [routerLink]="['/profile/changePassword']">
+      <span class="las la-lock"></span>
+      <span>Change Password</span>
+    </a></li>
+    <li><a href="javascript:void (0)" [routerLink]="['/profile/address']">
+      <span class="las la-address-book"></span>
+      <span> Addresses</span>
+    </a></li>
+    <li><a [routerLink]="['/favorites']">
+      <span class="las la-heart"></span>
+      <span>    Favorite </span>
+    </a></li>
+    <li><a routerLink="/profile/transaction">
+      <span class="las la-wallet"></span>
+      <span>    Transactions </span>
+    </a></li>
+  </ul>
+</div>

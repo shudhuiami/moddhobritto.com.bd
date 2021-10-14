@@ -1,0 +1,148 @@
+<div class="merchant">
+  <div class="container">
+    <div class="wrapper" >
+      <h1 class="text-center mb-5 mt-5  page-title-container"><span class="page-title gradient-text-theme ">Request a Product</span></h1>
+
+      <div class="request-form"   >
+          <div class="row mb-3">
+            <div class="col-lg-4 col-md-4">
+              <label for="product_name" class="">Name of product  <span class="text-danger">*</span> :</label>
+              <label for="product_name" class="">পণ্যের নাম <span class="text-danger">*</span> :</label>
+            </div>
+            <div class="col-lg-8 col-md-8">
+              <div class="form-group">
+                <input type="text" name="product_name" placeholder="পণ্যের নাম" class="form-control" id="product_name" [(ngModel)]="requestProductForm.product_name">
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+          </div>
+        <div class="row mb-3">
+          <div class="col-lg-4 col-md-4">
+            <label for="made_in" class=" ">Made in country  <span class="text-danger">*</span> :</label>
+            <label for="made_in" class="">কোন দেশি পণ্য?  <span class="text-danger">*</span> :</label>
+          </div>
+          <div class="col-lg-8 col-md-8">
+            <div class="form-group">
+              <input type="text" name="country" placeholder="কোন দেশি পণ্য?" class="form-control" id="made_in" [(ngModel)]="requestProductForm.country">
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-lg-4 col-md-4">
+            <label for="site_name" class="">Where have you seen the product? <span class="text-danger">*</span> :</label>
+            <label for="site_name" class="">আপনি পণ্যটি কোথায় দেখেছেন? <span class="text-danger">*</span> :</label>
+          </div>
+          <div class="col-lg-8 col-md-8">
+            <div class="form-group">
+              <input type="text" name="site_name" class="form-control" id="site_name" [(ngModel)]="requestProductForm.site_name"
+              placeholder="Online(Facebook/Insta/Site Name Etc) & Office(Shop/In Someone's Collection)">
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-lg-4  col-md-4 ">
+            <label for="site_name" class="">Submit product link (if online)  <span class="text-danger">*</span> :</label>
+            <label for="site_name" class="">পণ্যের লিংক (অনলাইনের ক্ষেত্রে)  <span class="text-danger">*</span> :</label>
+          </div>
+          <div class="col-lg-8 col-md-8">
+            <div class="form-group">
+              <input type="text" name="site_link" placeholder="পণ্যের লিংক (অনলাইনের ক্ষেত্রে)" class="form-control" id="site_link"  [(ngModel)]="requestProductForm.site_link">
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-lg-4  col-md-4 ">
+            <label for="product_details" class="">Product details <span class="text-danger">*</span> :</label>
+            <label for="product_details" class="">পণ্যের বিবরণ <span class="text-danger">*</span> :</label>
+          </div>
+          <div class="col-lg-8 col-md-8">
+            <div class="form-group">
+              <textarea name="product_details" placeholder="পণ্যের বিবরণ" id="product_details" class="form-control" rows="6"  [(ngModel)]="requestProductForm.product_details"></textarea>
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="col-lg-4 col-md-4"></div>
+          <div class="col-lg-8 col-md-8">
+          <div class="row">
+            <div class="col-lg-6 ">
+              <div class="form-group position-relative">
+                <span class="las la-times deleteImage" *ngIf="preview_image_1 != null && loading1 === false"></span>
+                <label for="product_image_1">
+                  <div class="imagePreviewUpload"  *ngIf="preview_image_1 == null && loading1 === false">
+                    <i class="las la-upload"></i>
+                  </div>
+                  <div class="imagePreview" *ngIf="preview_image_1 != null && loading1 === false">
+                    <img  [src]="preview_image_1" alt="">
+
+                  </div>
+                  <div class="lds-roller-wrapper" *ngIf="loading1 === true">
+                    <div class="lds-roller">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
+                </label>
+                <input type="file" name="product_image_1" id="product_image_1" class="form-control d-none" (change)="AttachFile($event, 0)" >
+                <div  class="text-center" > Product Image 1 <span class="text-danger">*</span></div>
+                <div class="invalid-feedback text-center"></div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group position-relative">
+                <span class="las la-times deleteImage" *ngIf="preview_image_2 != null && loading2 === false"></span>
+                <label for="product_image_2">
+                  <div class="imagePreviewUpload" *ngIf="preview_image_2 == null && loading2 === false">
+                    <i class="las la-upload"></i>
+                  </div>
+                  <div class="imagePreview" *ngIf="preview_image_2 != null && loading2 === false">
+                    <img [src]="preview_image_2"  alt="">
+
+                  </div>
+                  <div class="lds-roller-wrapper" *ngIf="loading2 === true">
+                    <div class="lds-roller">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
+                </label>
+                <input type="file" name="product_image_2" id="product_image_2" class="form-control d-none" (change)="AttachFile($event, 1)" >
+                <div  class="text-center" > Product Image 2 </div>
+                <div class="invalid-feedback text-center"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 offset-lg-4 offset-md-4 mt-5 ">
+            <button *ngIf=" loading === false" type="submit" (click)="requestProducts()"  data-loading="" class="btn  btn-default   btn-sign-in" style="max-width: 200px">
+              Submit
+            </button>
+
+            <button *ngIf=" loading === true" type="submit"   data-loading="" class="btn  btn-default   btn-sign-in" style="max-width: 200px">
+              <i class="las la-spinner"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

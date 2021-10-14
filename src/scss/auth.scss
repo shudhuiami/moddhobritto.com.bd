@@ -1,0 +1,461 @@
+.login-wrap {
+  .remember-me {
+    margin-top: -1px;
+    float: left;
+  }
+
+  .forgot-password {
+    margin-top: -1px;
+    color: #6e6e6e;
+    float: right;
+
+    &:hover {
+      color: $theme;
+    }
+  }
+
+  .btn-sign-in {
+    margin-top: 34px;
+  }
+
+  .btn-create-account {
+    margin-top: 12px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .login-wrap {
+    .forgot-password, .remember-me {
+      text-align: center;
+    }
+
+    .forgot-password {
+      margin-top: 4px;
+      @media screen and (max-width: 400px){
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.register-wrap {
+  .terms-and-conditions {
+    margin-top: -1px;
+  }
+
+  .form-group > img {
+    border-radius: 2px;
+  }
+
+  .btn-create-account {
+    margin-top: 34px;
+  }
+
+  .btn-sign-in {
+    margin-top: 12px;
+  }
+}
+
+//auth wrap//
+.form-wrap {
+  margin-top: 63px;
+  padding-bottom: 20px;
+}
+
+.form-wrap-inner {
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+  padding:  65px;
+  box-shadow: 0 0 1px #ebebeb;
+  border: 1px solid #ebebeb;
+  background-color: white;
+  @media screen and (max-width: 500px){
+    padding: 30px;
+  }
+
+  > {
+    h2 {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 19px;
+      color: #6e6e6e;
+    }
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 12px 14px;
+    letter-spacing: 1px;
+    i{
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+    }
+  }
+
+  .btn-default {
+    width: 100%;
+    padding: 11px 14px;
+    letter-spacing: 1px;
+  }
+
+  .sign-in-with {
+    font-size: 16px;
+    display: block;
+    margin-top: 25px;
+    color: #6e6e6e;
+    text-align: center;
+  }
+
+  .social-login {
+    margin-top: 13px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+
+    li a {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      font-size: 16px;
+      height: 40px;
+      width: 40px;
+      margin: 0 10px;
+      color: #fff;
+      -webkit-box-align: center;
+      align-items: center;
+      border-radius: 50%;
+
+      &:hover {
+        opacity: 0.85;
+      }
+
+      &.facebook {
+        background: #3a559f;
+      }
+
+      &.google {
+        background: #d94936;
+      }
+    }
+  }
+
+  .have-an-account {
+    display: block;
+    line-height: 26px;
+    margin-top: 23px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 647px) {
+  .form-wrap-inner {
+    width: 100%;
+  }
+}
+
+
+.form-control {
+  font-size: 14px;
+  height: 45px;
+  padding: 10px 15px;
+  border-color: #ebebeb;
+  border-radius: 2px;
+  -webkit-transition: .15s ease-in-out;
+  transition: .15s ease-in-out
+}
+
+.form-control:focus {
+  border-color: $theme;
+  box-shadow: none
+}
+
+select {
+  border: none
+}
+
+select.arrow-black {
+  background-position: right 10px center
+}
+
+textarea.form-control {
+  -webkit-transition: border .15s ease-in-out, resize 0ms;
+  transition: border .15s ease-in-out, resize 0ms
+}
+
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    font-weight: 500;
+    margin-bottom: 9px;
+
+    > span {
+      margin-left: 4px;
+      color: #e23e1d;
+    }
+  }
+}
+
+.form-control {
+  font-size: 14px;
+  height: 45px;
+  padding: 10px 15px;
+  border-color: #ebebeb;
+  border-radius: 2px;
+  -webkit-transition: .15s ease-in-out;
+  transition: 0.15s ease-in-out;
+
+  &:focus {
+    border-color: $theme;
+    box-shadow: none;
+  }
+}
+
+select {
+  border: none;
+
+  &.arrow-black {
+    background-position: right 10px center;
+  }
+}
+
+textarea.form-control {
+  -webkit-transition: border .15s ease-in-out, resize 0ms;
+  transition: border 0.15s ease-in-out, resize 0ms;
+}
+
+.form-check {
+  padding: 0;
+
+  label {
+    font-weight: 400;
+    color: #6e6e6e;
+  }
+
+  input[type=checkbox] {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    display: none;
+
+    &:checked + label, &:not(:checked) + label {
+      position: relative;
+      padding-left: 28px;
+      cursor: pointer;
+      display: inline-block;
+      text-align: left;
+      @media screen and (max-width: 400px){
+        font-size: 14px;
+      }
+    }
+
+    &:checked + label:before, &:not(:checked) + label:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 18px;
+      height: 17px;
+      border: 1px solid #e1e1e1;
+      border-radius: 2px;
+      -webkit-transition: .15s ease-in-out;
+      transition: 0.15s ease-in-out;
+    }
+
+    &:checked + label:after {
+      position: absolute;
+      content: "";
+      top: 5px;
+      left: 4px;
+      height: 6px;
+      width: 10px;
+      border: 2px solid $theme;
+      border-top: none;
+      border-right: none;
+      -webkit-transform: rotate(-45deg) scale(0);
+      transform: rotate(-45deg) scale(0);
+      -webkit-transition: .15s ease-in-out;
+      transition: 0.15s ease-in-out;
+    }
+
+    &:not(:checked) + label:after {
+      position: absolute;
+      content: "";
+      top: 5px;
+      left: 4px;
+      height: 6px;
+      width: 10px;
+      border: 2px solid #0068e1;
+      border-top: none;
+      border-right: none;
+      -webkit-transform: rotate(-45deg) scale(0);
+      transform: rotate(-45deg) scale(0);
+      -webkit-transition: .15s ease-in-out;
+      transition: 0.15s ease-in-out;
+      opacity: 0;
+      transform: rotate(-45deg) scale(0);
+    }
+
+    &:checked + label:after {
+      opacity: 1;
+      -webkit-transform: rotate(-45deg) scale(1);
+      transform: rotate(-45deg) scale(1);
+    }
+  }
+}
+
+.form-radio {
+  padding: 0;
+
+  label {
+    font-weight: 400;
+    color: #6e6e6e;
+  }
+
+  input[type=radio] {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    display: none;
+
+    &:checked + label, &:not(:checked) + label {
+      position: relative;
+      padding-left: 28px;
+      cursor: pointer;
+      display: inline-block;
+      text-align: left;
+    }
+
+    &:checked + label:before, &:not(:checked) + label:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 17px;
+      height: 17px;
+      border: 1px solid #e1e1e1;
+      border-radius: 50%;
+      -webkit-transition: .15s ease-in-out;
+      transition: 0.15s ease-in-out;
+    }
+
+    &:checked + label:after {
+      position: absolute;
+      content: "";
+      top: 7px;
+      left: 5px;
+      height: 7px;
+      width: 7px;
+      background: #0068e1;
+      background: var(--color-primary);
+      border-radius: 50%;
+      -webkit-transform: scale(0);
+      transform: scale(0);
+      -webkit-transition: .15s ease-in-out;
+      transition: 0.15s ease-in-out;
+    }
+
+    &:not(:checked) + label:after {
+      position: absolute;
+      content: "";
+      top: 7px;
+      left: 5px;
+      height: 7px;
+      width: 7px;
+      background: #0068e1;
+      background: var(--color-primary);
+      border-radius: 50%;
+      -webkit-transform: scale(0);
+      transform: scale(0);
+      -webkit-transition: .15s ease-in-out;
+      transition: 0.15s ease-in-out;
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    &:checked + label:after {
+      opacity: 1;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+}
+
+.form-check-label > a {
+  color: $theme;
+
+  &:hover {
+    color: $theme;
+  }
+}
+
+.has-error .form-control {
+  border-color: #e23e1d;
+
+  &:focus {
+    border-color: #e23e1d;
+  }
+}
+
+.error-message {
+  line-height: 20px;
+  display: block;
+  margin: 4px 0 -5px;
+  color: #e23e1d;
+}
+
+::-webkit-input-placeholder, ::-moz-placeholder {
+  color: #a6a6a6 !important;
+  opacity: 1;
+}
+
+:-ms-input-placeholder, ::-ms-input-placeholder {
+  opacity: 1;
+}
+
+::placeholder {
+  color: #a6a6a6 !important;
+  opacity: 1;
+}
+
+:-ms-input-placeholder, ::-ms-input-placeholder {
+  color: #a6a6a6 !important;
+}
+
+.btn-sign-in{
+  background-color: $theme;
+  border-radius: 2px;
+  font-size: 15px;
+  line-height: 26px;
+}
+.btn-default {
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid $theme;
+  width: 100%;
+  padding: 11px 14px;
+  letter-spacing: 1px;
+  border-radius: 2px;
+  font-size: 15px;
+  &:hover{
+    background-color: $theme;
+    color: #ffffff;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,573 @@
+
+<div class="banner-wrappers">
+  <div class="container" *ngIf="slidesItems.length > 0 && sliderLoading === false">
+    <div class="banner-wrapper">
+      <div class="row sm-gutters">
+        <div class="col-md-8 ">
+          <div class="main-home-slider owl-carousel" >
+            <a class="banner-item main-item hover_effect d-block" *ngFor="let slide of slidesItems | slice:2"
+               [href]="slide.link" target="_blank">
+              <div class="image-cover">
+                <img [src]="slide.full_slide_path" alt="" loading="lazy">
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <a class="banner-item hover_effect side-banner d-block" *ngIf="slidesItems[0] != undefined"
+             target="_blank" [href]="slidesItems[1].link">
+            <div class="image-cover">
+              <img [src]="slidesItems[0].full_slide_path" alt="" loading="lazy">
+            </div>
+          </a>
+          <a class="banner-item hover_effect d-block" *ngIf="slidesItems[1] != undefined"
+            target="_blank" [href]="slidesItems[2].link">
+            <div class="image-cover">
+              <img [src]="slidesItems[1].full_slide_path" alt="" loading="lazy">
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="slidesItems.length === 0 || sliderLoading === true">
+    <div class="banner-wrapper">
+      <div class="row sm-gutters">
+        <div class="col-md-8">
+          <div class="banner-item main-item ">
+            <div class="image-cover">
+              <div class="ph-item abs">
+                <div class="ph-picture" style="min-height: 437px !important">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="banner-item  side-banner">
+            <div class="image-cover">
+              <div class="ph-item abs">
+                <div class="ph-picture" style="min-height: 216.5px !important">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="banner-item">
+            <div class="image-cover">
+              <div class="ph-item abs">
+                <div class="ph-picture" style="min-height: 216.5px !important">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="services">
+  <div class="container" *ngIf="slidesItems.length > 0">
+    <div class="wrapper">
+      <div class="row pl-2 pr-2">
+        <!--Service Item-->
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-3  mb-3" >
+          <a [routerLink]="['page', 'on-time-delivery']" class="box ">
+            <div class="row">
+              <div class="col-3">
+                <div class="icon" style="position: relative; bottom: 8px">
+                  <img style="width: 50px; height: 50px" src="./assets/img/dummyNew/service1.png" alt="" loading="lazy">
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="content">
+                  <h6>On Time Delivery</h6>
+                  <small>Fast shipping on all order</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!--Service Item-->
+        <div class="col-lg-3 col-md-6 col-sm-12  mt-3  mb-3">
+          <a [routerLink]="['page', 'member-discount']" class="box">
+            <div class="row">
+              <div class="col-3">
+                <div class="icon" style="position: relative; bottom: 8px">
+                  <img style="width: 50px; height: 50px" src="./assets/img/dummyNew/service2.png" alt="" loading="lazy">
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="content">
+                  <h6>Member Discount</h6>
+                  <small>We treat our customers specially</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!--Service Item-->
+        <div class="col-lg-3 col-md-6 col-sm-12  mt-3  mb-3">
+          <a [routerLink]="['page', 'money-return']" class="box">
+            <div class="row">
+              <div class="col-3">
+                <div class="icon" style="position: relative; bottom: 8px">
+                  <img style="width: 50px; height: 50px" src="./assets/img/dummyNew/service3.png" alt="" loading="lazy">
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="content">
+                  <h6>Money Return</h6>
+                  <small>Back guarantee under 7 days</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!--Service Item-->
+        <div class="col-lg-3 col-md-6 col-sm-12  mt-3  mb-3">
+          <a [routerLink]="['page', 'online-support-247']" class="box">
+            <div class="row">
+              <div class="col-3">
+                <div class="icon" style="position: relative; bottom: 8px">
+                  <img style="width: 50px; height: 50px" src="./assets/img/dummyNew/service4.png" alt="" loading="lazy">
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="content">
+                  <h6>Online Support 24/7</h6>
+                  <small>Support online 24 hours a day</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="slidesItems.length === 0">
+    <div class="wrapper">
+      <div class="row pl-2 pr-2">
+
+        <!--Service Item-->
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-3  mb-3"  *ngFor="let number of [0,1,2,3]">
+          <div class="box ">
+            <div class="row">
+              <div class="col-3">
+                <div class="ph-item abs" style="height: 50px; width: 100%">
+                  <div class="ph-picture">
+                    <div class="brand-text-wrapper">
+                      <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="content">
+                  <div class="ph-item no-border">
+                    <div class="ph-col-12">
+                      <div class="ph-row">
+                        <div class="ph-col-8 big"></div>
+                        <div class="ph-col-10"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="services" style="margin-top: 10px">
+  <div class="container">
+    <div class="wrapper" style="padding: 10px">
+      <div class="section-title">
+        <div class="bar">WE ARE HERE ON YOUR NEED</div>
+      </div>
+      <div class="row sm-gutters" *ngIf="PublicCategory.length > 0">
+        <div class="col-md-3 col-sm-6" *ngFor="let PCate of PublicCategory">
+          <div class="banner-wrapper banner-wrapper-sm">
+            <a [routerLink]="['/public-product', PCate.slug]" class="banner-item short hover_effect">
+              <div class="image-cover" style="display: block">
+                <img [src]="PCate.image_full_path" alt="" loading="lazy">
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row sm-gutters" *ngIf="PublicCategory.length == 0">
+        <div class="col-md-3 col-sm-6">
+          <div class="banner-wrapper banner-wrapper-sm">
+            <a href="#" class="banner-item short hover_effect">
+              <div class="ph-item abs">
+                <div class="ph-picture" style="min-height: 170px !important">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="banner-wrapper banner-wrapper-sm">
+            <a href="#" class="banner-item short hover_effect">
+
+              <div class="ph-item abs">
+                <div class="ph-picture" style="min-height: 170px !important">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="banner-wrapper banner-wrapper-sm">
+            <a href="#" class="banner-item short hover_effect">
+              <div class="ph-item abs">
+                <div class="ph-picture" style="min-height: 170px !important">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="banner-wrapper banner-wrapper-sm">
+            <a href="#" class="banner-item short hover_effect">
+              <div class="ph-item abs">
+                <div class="ph-picture" style="min-height: 170px !important">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="landscape-tab-products-wrap clearfix">
+  <div class="container  mt-4" *ngIf="dealData.length > 0">
+    <div class="tab-products-header clearfix mb-4 position-relative">
+      <ul class="tabs float-left">
+        <li class="tab-item tab-title active gradient-text-theme" >
+          Deals of the day
+        </li>
+        <li class=" text-right nav-view" >
+          <a [routerLink]="'deal-of-the-day'" class=" btn btn-outline-primary viewAll-btn" >View all <i
+            class="la la-arrow-right"></i></a>
+          <a href="javascript:void(0)" id="PrevSlider" class=" btn btn-outline-primary viewAll-btn" ><i
+            class="la la-arrow-left"></i></a>
+          <a href="javascript:void(0)" id="NextSlider" class=" btn btn-outline-primary viewAll-btn" ><i
+            class="la la-arrow-right"></i></a>
+        </li>
+      </ul>
+
+    </div>
+    <div class=" ">
+      <div id="Deals-slider" class="Deals-slider owl-carousel w-100">
+        <div class=" mb-1 w-100" *ngFor="let eachProduct of dealData; let fIndex = index;">
+          <app-product-box [eachProduct]="eachProduct" [fIndex]="fIndex"></app-product-box>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container  mt-4 " *ngIf="dealData.length === 0">
+    <div class="mb-4 position-relative clearfix">
+      <div class="ph-item abs float-left" style="height: 30px !important; width: 200px; margin-top: 10px!important;">
+        <div class="ph-picture"></div>
+      </div>
+      <a href="javascript:void(0)" class="float-right ">
+        <div class="ph-item abs" style="height: 30px !important;margin-bottom: 10px!important; width: 200px"></div>
+      </a>
+    </div>
+    <div>
+      <div class="Deals-slider d-flex w-100">
+        <div class=" mb-1 mr-1 w-100" *ngFor="let number of [0,1,2,3,4,5]">
+          <div class="product-card-wrapper">
+            <a class="product-card">
+              <div class="product-card-top">
+                <div
+                  class="product-image">
+                  <div class="ph-item abs" style="height: 230px">
+                    <div class="ph-picture">
+                      <div class="brand-text-wrapper">
+                        <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <ul class="list-inline product-badge"></ul>
+              </div>
+              <div class="product-card-middle">
+                <div class="ph-item abs w-100">
+                  <div class="ph-picture product-name "></div>
+                </div>
+              </div>
+              <div class="product-card-bottom">
+                <div class="btn-price" tabindex="0">
+                  <div class="ph-item abs" style="width: 75%;height: 20px;margin-bottom: 10px">
+                    <div class="ph-picture Price_Current"></div>
+                  </div>
+                  <div class="ph-item abs " style="width: 50%;height: 20px">
+                    <div class="ph-picture Price_Was "></div>
+                  </div>
+                  <div class="ph-item abs float-right"
+                       style="width: 50px;height: 20px; position: relative; bottom: 20px">
+                    <div class="ph-picture   "></div>
+                  </div>
+
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Deal Of the day-->
+
+  <!--Categories-->
+  <ng-container *ngIf="featuredShop.length > 0">
+    <div class="shops-list-wrapper">
+      <div class="categories ShopSectionEach" *ngFor="let shop of featuredShop; let index = index" [id]="'ShopSectionEach_'+index">
+        <div class="container">
+          <div class="wrapper">
+            <div class="row">
+              <div class="col-lg-12" style="margin-bottom: 30px; position: relative">
+                <div class="category-title">
+                  <div class="bar">
+                <span class="gradient-text" *ngIf="shop.id == 1">
+                  Pre-order<span class="divider-line-h"></span>Varieties<span class="divider-line-h"></span>Imported
+                </span>
+                    <span class="gradient-text" *ngIf="shop.id == 2">
+                  Decoration<span class="divider-line-h"></span>Handmade<span class="divider-line-h"></span>clothing
+                </span>
+                    <span class="gradient-text" *ngIf="shop.id == 3">
+                  Outfit<span class="divider-line-h"></span>Fashion<span class="divider-line-h"></span>Accessories
+                </span>
+                    <span class="gradient-text" *ngIf="shop.id == 4">
+                  Mobile<span class="divider-line-h"></span>Electronics<span class="divider-line-h"></span>Smart Devices
+                </span>
+                    <span class="gradient-text" *ngIf="shop.id == 5">
+                  Cosmetics<span class="divider-line-h"></span>Jewellery<span class="divider-line-h"></span>Makeover
+                </span>
+                    <span class="gradient-text" *ngIf="shop.id == 6">
+                  Food<span class="divider-line-h"></span>Health<span class="divider-line-h"></span>Household
+                </span>
+                  </div>
+                </div>
+                <div class="category-modal-button" *ngIf="shop.category.length > 0" (click)="showCategoryModal(shop)">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="categories-list">
+                  <div class="menu-item gradient-text-theme  category-list-title"
+                       style=" font-weight: bold; margin-bottom: 20px">Categories
+                  </div>
+                  <ul class="menu" *ngIf="shop.category.length > 0">
+                    <li class="menu-item" *ngFor="let cat of shop.category | slice:0:13">
+                      <a [routerLink]="[ cat.slug, 'category']">{{cat.title}}</a>
+                    </li>
+
+                    <li class="menu-item clearfix main-home-categories" *ngIf="shop.category.length > 13" (click)="cateScroll()" >
+                      <a href="javascript:void(0)" class="font-weight-bold theme-color"><span class="d-inline-block ">More Categories</span><span class="las la-angle-right float-right mt-1 "></span></a>
+                      <ul class="child more-category">
+                        <li class="child-item d-block" *ngFor="let cat of shop.category | slice:14:shop.category.length"><a   [routerLink]="[ cat.slug, 'category']">{{cat.title}}</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <!--<div class="view-all">
+                  <a href="javascript:void(0)">View all <i class="las la-angle-double-right"></i></a>
+                </div>-->
+              </div>
+              <!--Main category Banner-->
+              <div class="col-lg-4 mb-4">
+                <div class="category-main-banner hover_effect" [routerLink]="['', shop.slug]">
+                  <div class="image-cover">
+                    <img [src]="shop.cover_full_path" alt="" loading="lazy">
+                  </div>
+                  <div class="content">
+                    <button class="btn btn-primary">
+                      <i class="las la-angle-double-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!--Small category Banner-->
+              <div class="col-lg-6">
+                  <div class="row sm-gutters row-cols-lg-4 row-cols-md-4 row-cols-sm-2 row-col-xs-1 row-cols-2 "
+                     *ngIf="shop.sub_shop.length > 0">
+                  <div class="col mb-1" *ngFor="let subShop of shop.sub_shop | slice:0:15">
+                    <div class="each-sub-shop border  main-home" [routerLink]="['', subShop.slug]">
+                      <a class="sub-shop-image">
+                        <img alt="brand logo" [src]="subShop.logo_full_path"><span
+                        class="shop-title gradient-text-theme">{{subShop.title}}</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col mb-1" *ngIf="shop.sub_shop.length > 15">
+                    <div class="each-sub-shop border main-home">
+                      <div class="sub-shop-image more-button">
+                        <div class="btn-text gradient-text-theme" style="font-weight: bold">View All <br> Shops</div>
+                        <a [routerLink]="['all_sub_shop', shop.slug]" class="btn btn-sm btn-outline-primary">
+                          View all <i class="la la-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<!--        <button class=" top-to-bottom btn-sm" id="top-to-bottom" (click)="scrollToShop(index)">
+          <i class="las la-long-arrow-alt-down"></i>
+        </button>-->
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="featuredShop.length == 0">
+    <div class="categories">
+      <div class="container">
+        <div class="wrapper">
+          <div class="row">
+            <div class="col-lg-12" style="margin-bottom: 30px">
+              <div class="category-title">
+                <div class="bar">
+                  <div class="ph-item abs" style="height: 40px; max-width: 400px; margin:0 auto">
+                    <div class="ph-picture "></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="categories-list">
+                <div class="ph-item abs" style="height: 50px; ">
+                  <div class="ph-picture "></div>
+                </div>
+                <ul class="menu">
+                  <li class="menu-item" *ngFor="let number of [0,1,2,3,4]">
+                    <a>
+                      <div class="ph-item abs"style="height: 20px; ">
+                        <div class="ph-picture"></div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!--<div class="view-all">
+                <a href="javascript:void(0)">View all <i class="las la-angle-double-right"></i></a>
+              </div>-->
+            </div>
+            <!--Main category Banner-->
+            <div class="col-lg-4 mb-4">
+              <div class="category-main-banner hover_effect">
+                <div class="image-cover">
+                  <div class="ph-item abs" style="height: 100%; ">
+                    <div class="ph-picture ">
+                      <div class="brand-text-wrapper">
+                        <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Small category Banner-->
+            <div class="col-lg-6">
+              <div class="row sm-gutters row-cols-lg-4 row-cols-md-4 row-cols-sm-2 row-col-xs-1 row-cols-2">
+                <div class="col mb-1" *ngFor="let number of [0,1,2,3,4,5,6,7]">
+                  <div class="each-sub-shop border main-home">
+                    <div class="sub-shop-image more-button">
+                      <div class="ph-item abs" style="height: 100%; ">
+                        <div class="ph-picture">
+                          <div class="brand-text-wrapper">
+                            <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <br><br>
+  <div class="partners-section">
+    <div class="container">
+      <div class="partners-section-inner" *ngIf="partners.length > 0">
+        <div class="section-title">
+          <div class="bar">Our Partners</div>
+        </div>
+        <div class="partners-slider owl-carousel" id="partners-slide">
+          <div class="item" *ngFor="let partner of partners">
+            <div class="inner-item  w-100">
+              <a href="{{partner.link}}">
+                <img src="{{partner.image_path}}" alt="" loading="lazy">
+                <span class="title">{{partner.title}}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="showMainCategoryModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header cate-header-modal">
+        <h5 class="modal-title">
+          <div class="menu-item   category-list-title"
+               style=" font-weight: bold; ">Categories
+          </div>
+        </h5>
+        <button type="button" class="close" (click)="hideCategoryModal()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="categories-list" *ngIf="CategoryList != null">
+        <ul class="menu" *ngIf="CategoryList.category.length > 0">
+          <li class="menu-item" *ngFor="let cat of CategoryList.category ">
+            <a [routerLink]="[ cat.slug, 'category']">{{cat.title}}</a>
+          </li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

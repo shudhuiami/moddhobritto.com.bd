@@ -1,0 +1,34 @@
+<section class="form-wrap register-wrap">
+  <div class="container">
+    <div class="form-wrap-inner register-wrap-inner"><h2>Reset Password</h2>
+      <form method="POST">
+        <div class="form-group">
+          <label for="code">Code<span>*</span></label>
+          <input type="text" name="code" value=""
+                 id="code" autofocus="autofocus"
+                 class="form-control" [(ngModel)]="requestForm.code">
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password<span>*</span></label>
+          <input type="password" name="password" value=""
+                 id="password" autofocus="autofocus"
+                 class="form-control" [(ngModel)]="requestForm.password">
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Confirm Password<span>*</span></label>
+          <input type="password" name="password_confirmation" value=""
+                 id="confirm_password" autofocus="autofocus"
+                 class="form-control" [(ngModel)]="requestForm.password_confirmation"></div>
+        <button *ngIf=" loadingbtn === false" (click)="request()" type="submit" data-loading="" class="btn btn-primary btn-sign-in">
+          Submit
+        </button>
+
+        <button *ngIf=" loadingbtn === true" type="button" disabled data-loading="" class="btn btn-primary btn-sign-in">
+          <i class="las la-spinner"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

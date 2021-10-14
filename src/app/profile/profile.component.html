@@ -1,0 +1,186 @@
+<!--OLD CODE-->
+
+
+
+<!--New Code-->
+<!--Profile Section-->
+<div class="profile-section">
+  <!--Breadcrumb-->
+  <div class="container">
+  <!--account Wrapper-->
+  <div class="account-wrapper">
+      <!--account-top-->
+      <div class="account-top" *ngIf="loading === false">
+        <!--Intro-->
+        <div class="intro">
+          <!--profile Image-->
+          <div class="image">
+            <img [src]="UserInfo.avatar" alt="">
+          </div>
+          <div class="name">
+            <span class="greeting">Hello,</span>
+            <h3>{{UserInfo.name}}</h3>
+            <div class="text-light" style="cursor: pointer" *ngIf="UserInfo.activation_status == 0" (click)="openActiveModal()">Active Your Account Now</div>
+            <div class="text-light" *ngIf="UserInfo.activation_status == 1">Account Activated</div>
+          </div>
+        </div>
+        <!--Top Options-->
+        <div class="top-option-wrapper">
+          <ul class="nav">
+            <li class="nav-item">
+              <!--Wallet-->
+              <!--<div class="wallet">
+                <span class="text">Wallet</span>
+                <span class="count">0</span>
+              </div>-->
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="account-top" *ngIf="loading === true">
+        <!--Intro-->
+        <div class="intro">
+          <!--profile Image-->
+          <div class="image" style="overflow: hidden; ">
+            <div class="ph-item abs" >
+              <div class="ph-picture "  ></div>
+            </div>
+          </div>
+          <div class="name">
+            <span class="greeting" style="width: 100px; height: 20px">
+              <div class="ph-item abs" >
+              <div class="ph-picture "  ></div>
+            </div>
+            </span>
+            <br>
+            <h3 style="width: 100px; height: 20px">
+              <div class="ph-item abs" >
+                <div class="ph-picture "  ></div>
+              </div>
+            </h3>
+          </div>
+        </div>
+
+      </div>
+
+      <!--Account Bottom-->
+      <div class="account-bottom">
+        <!--Account Services-->
+        <div class="account-services" *ngIf="loading === false">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+            <a [routerLink]="['/profile/orders']" class="service-box">
+              <div class="icon gradient-text-theme">
+                <i class="las la-credit-card"></i>
+              </div>
+              <div class="text gradient-text-theme" style="font-weight: bold">
+                Orders
+              </div>
+            </a>
+            </div>
+            <div class="col-lg-4  col-md-6">
+            <a [routerLink]="['edit']" class="service-box">
+              <div class="icon gradient-text-theme">
+                <i class="las la-user"></i>
+              </div>
+              <div class="text gradient-text-theme" style="font-weight: bold">
+                Edit Profile
+              </div>
+            </a>
+            </div>
+            <div class="col-lg-4  col-md-6">
+            <a [routerLink]="['changePassword']" class="service-box">
+              <div class="icon gradient-text-theme">
+                <i class="las la-lock"></i>
+              </div>
+              <div class="text gradient-text-theme" style="font-weight: bold">
+                Change Password
+              </div>
+            </a>
+            </div>
+            <div class="col-lg-4  col-md-6">
+            <a [routerLink]="['address']" class="service-box">
+            <div class="icon gradient-text-theme">
+              <i class="las la-address-book"></i>
+            </div>
+            <div class="text gradient-text-theme" style="font-weight: bold">
+              Addresses
+            </div>
+          </a>
+            </div>
+            <div class="col-lg-4  col-md-6">
+            <a [routerLink]="['/favorites']" class="service-box">
+              <div class="icon">
+                <i class="las la-heart gradient-text-theme"></i>
+              </div>
+              <div class="text gradient-text-theme" style="font-weight: bold">
+                Favorite
+              </div>
+            </a>
+            </div>
+            <div class="col-lg-4  col-md-6">
+            <a [routerLink]="'/profile/transaction'" class="service-box">
+              <div class="icon gradient-text-theme">
+                <i class="las la-wallet"></i>
+              </div>
+              <div class="text gradient-text-theme" style="font-weight: bold">
+                Transactions
+              </div>
+            </a>
+            </div>
+
+          </div>
+        </div>
+        <div class="account-services" *ngIf="loading === true">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+            <a  class="service-box" style="padding: 10px">
+              <div class="ph-item abs" >
+                <div class="ph-picture "  ></div>
+              </div>
+            </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <a  class="service-box" style="padding: 10px">
+                <div class="ph-item abs" >
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <a  class="service-box" style="padding: 10px">
+                <div class="ph-item abs" >
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <a  class="service-box" style="padding: 10px">
+                <div class="ph-item abs" >
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <a  class="service-box" style="padding: 10px">
+                <div class="ph-item abs" >
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <a  class="service-box" style="padding: 10px">
+                <div class="ph-item abs" >
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Profile Section-->
+

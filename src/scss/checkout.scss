@@ -1,0 +1,680 @@
+//Checkout Section
+.checkout-section{
+  //Seation title
+  .section-title{
+    font-size: 25px;
+    font-weight: 500;
+    color: $theme;
+  }
+
+  //All Product List
+  .all-products{
+      .shop-wrap{
+        border-radius: 4px;
+        background-color: white;
+        height: 100%;
+        .shop-name{
+          border-bottom: 1px solid #f0f0f0;
+          color: $theme;
+          /* The container */
+          .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+          }
+
+          /* Hide the browser's default radio button */
+          .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+          }
+
+          /* Create a custom radio button */
+          .checkmark {
+            position: absolute;
+            top: 5px;
+            left: 0;
+            height: 15px;
+            width: 15px;
+            border-radius: 4px;
+            background-color: #eee;
+          }
+
+          /* On mouse-over, add a grey background color */
+          .container:hover input ~ .checkmark {
+            background-color: #ccc;
+          }
+
+          /* When the radio button is checked, add a blue background */
+          .container input:checked ~ .checkmark {
+            background-color: $theme;
+          }
+
+          /* Create the indicator (the dot/circle - hidden when not checked) */
+          .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+          }
+
+          /* Show the indicator (dot/circle) when checked */
+          .container input:checked ~ .checkmark:after {
+            display: block;
+          }
+
+          /* Style the checkmark/indicator */
+          .container .checkmark:after {
+            left: 3px;
+            top: -0.2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+          }
+        }
+        .product-wrap{
+          @media screen and (max-width: 700px){
+
+          }
+          .each-product{
+            border-bottom: 1px solid #f0f0f0;
+            margin: 10px 0;
+            padding: 0 20px 10px;
+            height: 120px;
+            overflow: hidden;
+              @media screen and (max-width: 780px){
+                flex-direction: column;
+                height: 450px;
+                padding: 0 20px;
+                width:100%;
+              }
+              .product-image{
+                width: 90px;
+                height: 90px;
+                 background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                @media screen and (max-width: 780px){
+                  width: 100%;
+                  height: 200px;
+                  background-position: center;
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                }
+              }
+            .product-name_features{
+              width: 70%;
+              padding: 0 20px;
+              @media screen and (max-width: 780px){
+                width: 100%;
+                padding: 0 10px;
+              }
+              .name{
+                font-size: 16px;
+                  @media screen and (max-width: 900px){
+                    font-size: 14px;
+                  }
+              }
+              .features{
+                font-size: 12px;
+                @media screen and (max-width: 844px){
+                  font-size: 10px;
+                }
+              }
+            }
+            .product-price_delete_wishlist{
+              width: 100px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              align-items: center;
+              .price{
+                font-size: 18px;
+                color: $theme;
+              }
+              .actions{
+                button{
+                  box-shadow: none;
+                  &:hover{
+                    color: $theme;
+                  }
+                }
+                .wishlist_active{
+                  color: $theme;
+                }
+              }
+            }
+            .product-quantity{
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              align-items: flex-start;
+              padding-top: 10px;
+                button{
+                  border: none;
+                  width: 30px;
+                  height: 30px;
+                  transition:all .2s ease-in-out;
+                    &:hover{
+                      background-color:$theme;
+                      color: white;
+                      transition:all .2s ease-in-out;
+                    }
+                }
+                input{
+                  width: 60px;
+                  height: 30px;
+                  border: none;
+                  border-top: 1px solid #f0f0f0;
+                  border-bottom: 1px solid #f0f0f0;
+                  text-align: center;
+                  /* Chrome, Safari, Edge, Opera */
+                  &::-webkit-outer-spin-button,
+                  &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                  }
+
+                  /* Firefox */
+                  &[type=number] {
+                    -moz-appearance: textfield;
+                  }
+                }
+            }
+          }
+        }
+      }
+  }
+  //Order Section
+  .order-wrap{
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 4px;
+      .shopping_billing{
+        .title{
+          font-size: 18px;
+          font-weight: 500;
+          margin-bottom: 20px;
+          color: $theme;
+        }
+        .user_name{
+          font-size: 16px;
+          color: $gray-600;
+          font-weight: 500;
+          margin-bottom: 10px;
+            i{
+              font-size: 16px;
+              color: $theme;
+            }
+        }
+        .address{
+          font-size: 14px;
+          color: $gray-600;
+          margin-bottom: 10px;
+          i{
+            font-size: 16px;
+            color: $theme;
+          }
+        }
+        .phone_number{
+
+          color: $gray-600;
+          font-size: 14px;
+          margin-bottom: 10px;
+          i{
+            color: $theme;
+            font-size: 16px;
+          }
+        }
+        .email{
+          color: $gray-600;
+          font-size: 14px;
+          margin-bottom: 10px;
+          i{
+            font-size: 16px;
+            color: $theme;
+          }
+        }
+      }
+    .order-summary{
+      padding: 10px 0;
+      border-top: 1px solid #f0f0f0;
+      .order_summary_title{
+        font-size: 18px;
+        font-weight: 500;
+        color: $theme;
+        margin-bottom: 20px;
+      }
+      .payment_method{
+        margin-bottom:20px;
+        .btn{
+          font-size: 14px;
+          box-shadow: none;
+          height: 100%;
+          color: $gray-600;
+          width: 50%;
+          border-radius: 0;
+          border: 1px solid $gray-500;
+            &:hover{
+              background-color: $theme;
+              border-color:$theme ;
+              color: white;
+            }
+          @media screen and (max-width: 1150px){
+            font-size: 12px;
+          }
+          @media screen and (max-width: 1090px){
+            font-size: 16px;
+          }
+          @media screen and (max-width: 500px){
+            font-size: 13px;
+          }
+
+        }
+        .btn-online{
+          border-right: none;
+          &.active{
+            background-color: $theme;
+            color: white;
+          }
+        }
+        .btn-cash-on-delivery{
+          border-left: none;
+          &.active{
+            background-color: $theme;
+            color: white;
+          }
+
+        }
+      }
+      .cardCode{
+        margin-bottom: 20px;
+        display: none;
+      }
+      .subTotal{
+        margin-bottom: 10px;
+        color: $gray-600;
+      }
+      .total{
+        margin-bottom: 10px;
+        color: $gray-600;
+      }
+    }
+    .order-submit-btn{
+      .btn{
+        width: 100%;
+        border: 1px solid #f0f0f0;
+        color: white;
+        background-color: $theme;
+      }
+    }
+    .detail{
+      display: flex;
+      flex-direction: row;
+      .title{
+        width: 150px;
+      }
+      .content{
+        width: calc(100% - 160px);
+      }
+    }
+
+  }
+
+  /*Step by Step*/
+  .step-wrap{
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .step{
+      width: 25%;
+      background-color: white;
+      color: $theme;
+      text-align: center;
+      padding: 3px 0;
+      position: relative;
+      border: 1px solid $theme;
+      border-radius:10px;
+      &.active{
+        background-color: $theme;
+        .step-num{
+          background-color: $theme;
+          color: white;
+        }
+      }
+      .step-num{
+        display: block;
+        width: 30px;
+        height: 30px;
+        padding: 4px 0;
+        text-align: center;
+        position: absolute;
+        top: -13px;
+        left: -15px;
+        border-radius: 50px;
+        border: 1px solid #0D72B9;
+        background-color: white;
+        z-index: 1;
+        font-size: 14px;
+      }
+      .step-num1{
+        display: block;
+        width: 30px;
+        height: 30px;
+        padding: 4px 0;
+        text-align: center;
+        position: absolute;
+        top: -13px;
+        right: -15px;
+        border-radius: 50px;
+        border: 1px solid #0D72B9;
+        background-color: white;
+        z-index: 1;
+        font-size: 14px;
+      }
+    }
+  }
+}
+.btn-background-theme{
+  color: white;
+  background-color: $theme;
+}
+
+
+.SuccessCardWrap{
+  text-align: center;
+  padding: 40px 0;
+  background: #EBF0F5;
+
+.SuccessCard {
+  width: 100%;
+  background: white;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px #C8D0D8;
+  display: inline-block;
+  .gif-image{
+    max-width: 300px;
+    margin: 0 auto;
+    width: 100%;
+      img{
+        width: 100%;
+      }
+  }
+  h1 {
+    color: $theme;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    font-size:30px;
+    margin: 10px 0;
+  }
+  p {
+    color: #404F5E;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-size:20px;
+    margin: 0;
+  }
+  .checkmark {
+    color: $theme;
+    font-size: 100px;
+    line-height: 200px;
+    margin-left:-15px;
+  }
+    .btn{
+      background-color: $theme;
+      color: white;
+      text-decoration: none;
+      padding: 15px 30px;
+      opacity: .8;
+    }
+  }
+}
+
+/*
+  Proceed Section
+*/
+.proceed-section{
+  .billing-form-wrap{
+    background-color: white;
+    padding: 50px 80px;
+  }
+  .order-wrap{
+    background-color: white;
+    padding:  50px 40px;
+    .tab-products-header{
+    }
+      .Summery-wrap{
+        .top{
+        }
+          .sub-total{
+            padding: 10px 0;
+            border-bottom: 1px solid #dfdfdf;
+            color: #6c757d;
+          }
+          .shipping{
+            border-bottom: 1px solid #dfdfdf;
+            color: #6c757d;
+            padding: 10px 0;
+          }
+        .grand-total{
+          border-bottom: 1px solid #dfdfdf;
+          text-align: center;
+          padding: 10px 40px;
+          .content{
+          }
+          .price{
+            font-weight: 600;
+            font-size: 35px;
+          }
+        }
+
+        .order-submit-btn{
+          .btn{
+            width: 100%;
+            border: 1px solid #f0f0f0;
+            color: white;
+            background-color: $theme;
+          }
+        }
+      }
+  }
+}
+
+/*Custom Checkbox*/
+.check-box-container {
+  width: 100%;
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.check-box-container-input {
+  display: block;
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check-box-container .checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.check-box-container-input .checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 8px;
+  border-radius: 4px;
+  left: 0;
+  height: 15px;
+  border: 2px solid $theme;
+  width: 15px;
+}
+/* Create a custom checkbox */
+.checkmark-input {
+  position: absolute;
+  top: 4px;
+  border-radius: 5px;
+  background-color: #dfdfdf;
+  left: 0;
+  height: 15px;
+  width: 15px;
+}
+
+
+
+/* When the checkbox is checked, add a $theme background */
+.check-box-container .checkbox:checked ~ .checkmark {
+  background-color: $theme !important;
+}
+/* When the checkbox is checked, add a $theme background */
+.check-box-container-input .checkbox:checked ~ .checkmark-input {
+  background-color: $theme !important;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark-input:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check-box-container .checkbox:checked ~ .checkmark:after {
+  display: block;
+}
+/* Show the checkmark when checked */
+.check-box-container-input .checkbox:checked ~ .checkmark-input:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check-box-container .checkmark:after {
+  left: 3px;
+  top: 0;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(
+      45deg
+  );
+  -ms-transform: rotate(45deg);
+  transform: rotate(
+      45deg
+  );
+}
+/* Style the checkmark/indicator */
+.check-box-container-input .checkmark-input:after {
+  left: 5px;
+  top: 1.5px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(
+      45deg
+  );
+}
+
+.payment-icon{
+  width: 100%;
+  display: block;
+  .box-wrap{
+    width: 100%;
+    &.active{
+      .icon-box{
+        border-color: $theme;
+      }
+    }
+    &:last-child{
+      float: left;
+    }
+    &:hover{
+      .icon-box{
+        transition: .2s ease;
+        border-color: $theme;
+      }
+      .icon-title{
+        color: $theme;
+      }
+    }
+  .icon-box{
+    border-radius: 5px;
+    transition: .2s ease;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #dddddd;
+    .icon-title{
+      width: 100%;
+      text-align: center;
+      color: #000;
+      float: left;
+      font-size: 14px;
+      font-weight: 500;
+      background: #0D72B9;
+      background: linear-gradient(to right, #0D72B9 0%, #9B23CF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    img{
+      width: 50px;
+      height: 50px;
+      transform: scale(2);
+    }
+    i{
+      color: $theme;
+      font-size: 40px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  }
+}

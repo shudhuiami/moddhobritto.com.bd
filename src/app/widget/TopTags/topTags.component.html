@@ -1,0 +1,26 @@
+<div class="tag-wrapper" *ngIf="mostSearchData.length > 0 && tagLoading === false">
+  <div class="tab-products-header clearfix mb-4">
+    <ul class="tabs float-left">
+      <li class="tab-item active">
+        Popular Tags
+      </li>
+    </ul>
+  </div>
+  <div class="all-tags">
+    <a (click)="gotosearch(mostsearch.title)" *ngFor="let mostsearch of mostSearchData" href="javascript:void(0)" class="tags">   {{mostsearch.title}}</a>
+  </div>
+</div>
+<div class="tag-wrapper" *ngIf="tagLoading === true">
+  <div class="tab-products-header clearfix mb-4">
+    <div class="ph-item abs">
+      <div class="ph-picture" style="min-height: 30px !important"></div>
+    </div>
+  </div>
+  <div class="all-tags">
+    <a  href="javascript:void(0)" class="tags" style="padding: 0; margin: 20px;" *ngFor="let number of [1,2,3,4]">
+      <div class="ph-item abs">
+        <div class="ph-picture" style="min-height: 20px; width: 40px !important"></div>
+      </div>
+    </a>
+  </div>
+</div>

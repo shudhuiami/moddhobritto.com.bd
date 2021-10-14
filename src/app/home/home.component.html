@@ -1,0 +1,326 @@
+<div class="container">
+  <ng-container *ngIf=" loading === false" >
+    <div >
+    <div class="position-relative"   *ngIf="shopDetails !== undefined" style="height: 220px">
+      <div class="home-top-slider owl-carousel " *ngIf="shopDetails.slides.length > 0">
+        <div class="shop-details-wrapper2" *ngFor="let slides of shopDetails.slides" [style.background-image]="'url(' + slides.full_slide_path + ')'"></div>
+      </div>
+      <div  class="shop-details-wrapper" >
+      <div class="shop-details">
+        <div class="shop-logo">
+          <img [src]="shopDetails.logo_full_path" alt="">
+        </div>
+        <div class="information">
+          <div class="shop-title">{{shopDetails.title}}</div>
+          <div class="shop-description">{{shopDetails.description}}</div>
+          <!--<div class="product-rating d-flex justify-content-start">
+            <div class="golden-stars">
+              <i class="las la-star"></i>
+              <i class="las la-star"></i>
+              <i class="las la-star"></i>
+              <i class="las la-star"></i>
+              <i class="las la-star"></i>
+            </div>
+            <span class="rating-count pl-2">(5.00)</span>
+          </div>-->
+          <ul class="social-links">
+            <li><a href="#"><i class="lab la-facebook"></i></a></li>
+            <li><a href="#"><i class="lab la-instagram"></i></a></li>
+            <li><a href="#"><i class="lab la-youtube"></i></a></li>
+            <li><a href="#"><i class="lab la-twitter"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </ng-container>
+  <div class="position-relative" *ngIf="loading === true">
+    <div class="shop-details-wrapper bg-white"  style="position: relative">
+      <div class="ph-item abs">
+        <div class="ph-picture">
+          <div class="brand-text-wrapper">
+            <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="home-contents-section mb-5">
+    <div class="section-left">
+      <div class="category-list" *ngIf="loading === false">
+        <div class="title">
+          Categories
+        </div>
+        <ul class="category-menu " >
+          <ng-container *ngIf="categories.length > 0">
+            <li class="category-item  has-dropdown drop-parent "  *ngFor="let eachCat of categories" >
+            <i class="text-dark las la-angle-right arrow-right" *ngIf="eachCat.child.length > 0"  style="cursor: pointer"></i>
+            <a [routerLink]="['products', eachCat.slug]"
+               class="category-link">
+              {{eachCat.title}}
+            </a>
+            <ul class="sm-sub-menu drop-body-top" *ngIf="eachCat.child.length > 0">
+
+              <li class="sm-sub-menu-item drop-parent" *ngFor="let eachCat2 of eachCat.child">
+                <i class="text-dark las la-angle-right arrow-right"  *ngIf="eachCat2.child != undefined "  style="cursor: pointer"></i>
+
+                <a [routerLink]="['products', eachCat2.slug]" [queryParams]="{ cat: eachCat2.title }" target="_self">{{eachCat2.title}}</a>
+
+                <ul class="sm-child-menu drop-body-inner"  *ngIf="eachCat2.child != undefined">
+                  <li class="sm-child-menu-item" *ngFor="let eachCat3 of eachCat2.child">
+                    <a [routerLink]="['products', eachCat3.slug]" [queryParams]="{ cat: eachCat3.title }" target="_self">
+                      {{eachCat3.title}}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          </ng-container>
+
+          <ng-container *ngIf="categories.length === 0">
+           <li class="category-item"><a href="javascript:void(0)">No Category Available</a></li>
+          </ng-container>
+        </ul>
+      </div>
+      <div class="category-list-dummy p-3 mb-5" *ngIf="loading === true" style="min-height: 650px">
+        <div class="categories-list">
+          <div class="ph-item abs" style="height: 50px; ">
+            <div class="ph-picture "  ></div>
+          </div>
+          <ul class="menu" >
+            <li class="menu-item" >
+              <a>
+                <div class="ph-item abs" style="height: 30px; ">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </li>
+            <li class="menu-item" >
+              <a>
+                <div class="ph-item abs" style="height: 30px; ">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </li>
+            <li class="menu-item" >
+              <a>
+                <div class="ph-item abs" style="height: 30px; ">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </li>
+            <li class="menu-item" >
+              <a>
+                <div class="ph-item abs" style="height: 30px; ">
+                  <div class="ph-picture "  ></div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-50 mb-4" *ngIf="loading === true">
+          <div class="banners banners1">
+            <a href="#">
+              <div class="ph-item abs">
+                <div class="ph-picture">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!--TOP SELLER-->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-50 mb-4" >
+          <app-top-sellers [shop_slug]="shop_slug"></app-top-sellers>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-50 mb-4" *ngIf="loading === true">
+          <div class="banners banners1">
+            <a href="#">
+              <div class="ph-item abs">
+                <div class="ph-picture">
+                  <div class="brand-text-wrapper">
+                    <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+        <!--Tags-->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-50 mb-4">
+          <app-top-tags [shop_slug]="shop_slug"></app-top-tags>
+        </div>
+
+        <!--TOP RATED-->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-50 mb-4" >
+          <app-top-products  [shop_slug]="shop_slug"></app-top-products>
+        </div>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="right-side-top-bar bg-white border p-4 rounded mb-4">
+        <div class="category-toggle-button" (click)="showCategoryModal()">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+      <ng-container *ngIf="PLoading === false && categoryProduct.length > 0">
+          <div class="landscape-tab-products-wrap clearfix" >
+          <ng-container *ngFor="let eachCat of categoryProduct ; let cIndex = index">
+              <div class="container mb-5 mr-0 pl-sm0 pr-0" *ngIf="eachCat.products.length > 0">
+                <div class="tab-products-header clearfix mb-4">
+                  <ul class="tabs float-left">
+                    <li class="tab-item tab-title active gradient-text-theme" style="font-size: 22px" [id]="cIndex + 1">
+                      {{eachCat.category_name}}
+                    </li>
+                    <li class=" text-right nav-view" >
+                      <a [routerLink]="['products', eachCat.slug]" class="btn btn-outline-primary viewAll-btn" >View all <i class="la la-arrow-right"></i></a>
+                      <button   class=" btn btn-outline-primary viewAll-btn" *ngIf="slider[cIndex].slideLoader === true"  [id]="'PrevSlider_'+cIndex"><i
+                        class="la la-arrow-left"></i></button>
+                      <button  class=" btn btn-outline-primary viewAll-btn" *ngIf="slider[cIndex].slideLoader === true" [id]="'NextSlider_'+cIndex"><i
+                        class="la la-arrow-right"></i></button>
+                    </li>
+                  </ul>
+                </div>
+                <ng-container *ngIf="slider[cIndex].slideLoader === true">
+                  <div class="d-block" *ngIf="eachCat.products.length > 0 ">
+                  <div class="category-slider owl-carousel" style="width: 100%"  [id]="'CatProductSlider_'+cIndex">
+                    <div class="item w-100" style="width: 100%" *ngFor="let eachProduct of eachCat.products; let fIndex = index">
+                      <div class="w-100 mb-1 position-relative" *ngFor="let innerProducts of eachProduct; let innerIndex = index">
+                        <app-product-box [eachProduct]="innerProducts"  [innerIndex]="innerIndex" [allCat]="categoryProduct" [cIndex]="cIndex" [fIndex]="fIndex"></app-product-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </ng-container>
+                <ng-container *ngIf="slider[cIndex].slideLoader === false">
+                  <div class="d-block" *ngIf="eachCat.products.length > 0">
+                  <div class="" style="width: 100%"  >
+                    <div class="item w-100" style="width: 100%" *ngFor="let eachProduct of eachCat.products; let fIndex = index">
+                      <div class="row sm-gutters row-cols-xl-5 row-cols-lg-5 row-cols-md-4 row-cols-sm-3  row-cols-2" >
+                        <div class="col mb-1 position-relative" *ngFor="let innerProducts of eachProduct; let innerIndex = index">
+                          <app-product-box [eachProduct]="innerProducts"  [innerIndex]="innerIndex" [allCat]="categoryProduct" [cIndex]="cIndex" [fIndex]="fIndex"></app-product-box>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </ng-container>
+                <br>
+              </div>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="PLoading === false && categoryProduct.length === 0">
+        <div >
+          <div class="wrap-no-data" >
+            <div class="container text-center noDataFound bg-white d-flex justify-content-center align-items-center" style="min-height: 300px; border-radius: 5px; border: 1px solid #dddddd">
+              <h1 class="display-1" style="font-size: 35px; margin: 0; padding: 0"> Products not available</h1>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="PLoading === true && categoryProduct.length == 0">
+        <div class="landscape-tab-products-wrap clearfix">
+          <div class="container mr-0 pr-0 pl-0">
+            <div class="row sm-gutters row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-2">
+              <div class="col mb-1 w-100" *ngFor="let number of [1,2,3,4,5]">
+                <div class="product-card-wrapper">
+                  <a  class="product-card" >
+                    <div class="product-card-top">
+                      <div
+                        class="product-image" >
+                        <div class="ph-item abs">
+                          <div class="ph-picture">
+                            <div class="brand-text-wrapper">
+                              <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ul class="list-inline product-badge"></ul>
+                    </div>
+                    <div class="product-card-middle">
+                      <div class="ph-item abs w-100" >
+                        <div class="ph-picture product-name " ></div>
+                      </div>
+                    </div>
+                    <div class="product-card-bottom" >
+                      <div class="btn-price" tabindex="0">
+                        <div class="ph-item abs" style="width: 75%;height: 20px;margin-bottom: 10px">
+                          <div class="ph-picture Price_Current" ></div>
+                        </div>
+                        <div class="ph-item abs " style="width: 50%;height: 20px">
+                          <div class="ph-picture Price_Was " ></div>
+                        </div>
+                        <div class="ph-item abs float-right" style="width: 50px;height: 20px; position: relative; bottom: 20px">
+                          <div class="ph-picture   " ></div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <app-brand-widget [shop_slug]="shop_slug"></app-brand-widget>
+      <app-sub-shop-widget></app-sub-shop-widget>
+    </div>
+  </div>
+</div>
+<div class="modal" id="showMainCategoryModal2" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header cate-header-modal">
+        <h5 class="modal-title">
+          <div class="menu-item category-list-title"
+               style=" font-weight: bold; ">Categories
+          </div>
+        </h5>
+        <button type="button" class="close" (click)="hideCategoryModal()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="category-list" *ngIf="loading === false">
+          <ul class="category-menu " >
+            <li class="category-item  has-dropdown drop-parent " *ngFor="let eachCat of categories" >
+              <i class="text-dark las la-angle-right arrow-right" *ngIf="eachCat.child.length > 0"  style="cursor: pointer"></i>
+              <a [routerLink]="['products', eachCat.slug]"
+                 class="category-link">
+                {{eachCat.title}}
+              </a>
+              <ul class="sm-sub-menu drop-body-top" *ngIf="eachCat.child.length > 0">
+
+                <li class="sm-sub-menu-item drop-parent" *ngFor="let eachCat2 of eachCat.child">
+                  <i class="text-dark las la-angle-right arrow-right"  *ngIf="eachCat2.child != undefined "  style="cursor: pointer"></i>
+
+                  <a [routerLink]="['products', eachCat2.slug]" [queryParams]="{ cat: eachCat2.title }" target="_self">{{eachCat2.title}}</a>
+
+                  <ul class="sm-child-menu drop-body-inner"  *ngIf="eachCat2.child != undefined">
+                    <li class="sm-child-menu-item" *ngFor="let eachCat3 of eachCat2.child">
+                      <a [routerLink]="['products', eachCat3.slug]" [queryParams]="{ cat: eachCat3.title }" target="_self">
+                        {{eachCat3.title}}</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

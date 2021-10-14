@@ -1,0 +1,20 @@
+<section class="form-wrap login-wrap">
+  <div class="container">
+    <div class="form-wrap-inner login-wrap-inner"><h2>Active Account</h2>
+      <form method="POST" action="" (ngSubmit)="activeForm()">
+        <div class="form-group"><label for="activation_code">Activation Code<span>*</span></label>
+          <input type="text" name="activation_code" value="" id="activation_code" class="form-control" [(ngModel)]="codeForm.activation_code">
+          <div class="invalid-feedback"></div>
+        </div>
+        <button *ngIf=" loadingbtn === false" type="submit" data-loading="" class="btn btn-primary btn-sign-in">
+        Submit
+        </button>
+
+        <button *ngIf=" loadingbtn === true" type="button" disabled data-loading="" class="btn btn-primary btn-sign-in">
+          <i class="las la-spinner"></i>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</section>

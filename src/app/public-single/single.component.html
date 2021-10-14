@@ -1,0 +1,480 @@
+<div class="container">
+  <div class="breadcrumb">
+    <ul class="list-inline">
+      <li><a [routerLink]="['/']"><i class="las la-home"></i> Home</a></li>
+<!--      <li><a [routerLink]="['/home']">Shop</a></li>-->
+      <li class="active">{{productDetails.title}}</li>
+    </ul>
+  </div>
+</div>
+<div class="container" *ngIf="loading === false">
+  <div class="single_wrapper clearfix">
+    <div class="product-details-wrap" *ngIf="objectCheck(productDetails)">
+      <div class="product-details-top">
+        <div class="product-details-top-inner ">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="product-image-gallery  ">
+                <div class="container">
+                  <div class="img-box p-1" *ngIf="productDetails.images.length > 0">
+                    <img *ngIf="imgSrc == null" src="{{productDetails.images[0].image_full_path}}" alt="" class="main-view">
+                    <img *ngIf="imgSrc != null" src="{{imgSrc}}" alt="" class="main-view">
+                  </div>
+                  <div class="img-pagi">
+                    <ul class="img-nav">
+                      <li class="img-item" *ngFor="let image of productDetails.images; let i = index">
+                        <a class="img-link" href="javascript:void(0)" (click)="showImage(image.image_full_path)">
+                          <img src="{{image.image_full_path}}">
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="product-details-info ">
+                <div class="details-info-top"><h1 class="product-name" [innerHTML]="productDetails.title"></h1>
+                  <div class="product-rating d-flex justify-content-start">
+                    <div class="back-stars">
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                      <i class="las la-star"></i>
+                    </div>
+                    <span class="rating-count pl-2">(0)</span>
+                  </div>
+                  <!--            <div class="availability out-of-stock">-->
+                  <!--              Out of stock-->
+                  <!--            </div>-->
+                  <div class="brief-description" *ngFor="let eachFeature of productDetails.features">{{eachFeature.features}}</div>
+                  <!--            <span *ngIf="productDetails.pre_order == 1">Approximate date of-->
+                  <!--              delivery: {{productDetails.approx_date_of_delivery}}</span>-->
+                  Days
+
+                </div>
+
+                <div class="details-info-middle">
+                  <div class="btn-price" tabindex="0">
+                    <ng-container *ngIf="productDetails.discount_type == 0">
+                  <span class="product-price ">
+                     <span class="Price_Current "> Price: {{price_current}}৳</span>
+                     <span class="Price_Was">{{price_was}}৳</span>
+                     <span class="Reduce_Price">- {{reduce_price}}%</span>
+                    </span>
+                    </ng-container>
+                    <ng-container *ngIf="productDetails.discount_type == 1">
+                  <span class="product-price ">
+                     <span class="Price_Current "> Price: {{price_current}}৳</span>
+                     <span class="Price_Was">{{price_was}}৳</span>
+                     <span class="Reduce_Price">- {{reduce_price}}৳</span>
+                    </span>
+                    </ng-container>
+                    <ng-container *ngIf="productDetails.discount_type == 2">
+                  <span class="product-price ">
+                     <span class="Price_Current "> Price: {{price_current}}৳</span>
+                    </span>
+                    </ng-container>
+                  </div>
+                  <br>
+                  <div class="product-variants">
+                    <div class="variants  mb-3" >
+                      <div class="title">Variants:</div>
+                      <br>
+                      <ng-container  *ngFor="let variant of productDetails.variants">
+                        <a href="javascript:void(0)" [class.active] = "variant.id === variants.variant_id" class="variant" (click)="selectVariant(variant)">{{variant.title}}</a>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="requirements mb-3">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Requirements" [(ngModel)]="requirements">
+                    </div>
+                  </div>
+                  <div class="details-info-middle-actions mb-3">
+                    <div class="number-picker">
+                      <label for="qty">Quantity</label>
+                      <div class="input-group-quantity">
+                        <input type="text" min="1" max="0" id="qty" [(ngModel)]="quantity"
+                               class="form-control input-number input-quantity"> <span
+                        class="btn-wrapper">
+                      <button type="button" class="btn btn-number btn-plus" (click)="increase()"> + </button>
+                      <button type="button"
+                              data-type="minus"
+                              disabled="disabled"
+                              class="btn btn-number btn-minus" (click)="decrease()"> - </button>
+                    </span>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-add-to-cart"
+                            (click)="addToCartsingle($event, productDetails.id, productDetails.shop_id)">
+                      <i class="las la-cart-plus"></i> ADD TO CART
+                    </button>
+                  </div>
+                  <div class="details-info-top-actions" *ngIf="Auth != null">
+                    <!--Wish List-->
+                    <button title="Wishlist" class="btn btn-wishlist" tabindex="0" *ngIf="productDetails.wished < 1"
+                            (click)="singleProductWishlist($event, productDetails.id)">
+                      <i class="la-heart lar"></i>wishlist
+                    </button>
+                    <button title="Wishlist" class="btn btn-wishlist wishlist_active" tabindex="0"
+                            *ngIf="productDetails.wished > 0" (click)="deleteSingleWishList($event, productDetails.id)">
+                      <i class="las la-heart"></i>wishlist
+                    </button>
+                  </div>
+                  <div class="details-info-top-actions" *ngIf="Auth == null">
+                    <!--Wish List-->
+                    <button title="Wishlist" class="btn btn-wishlist" tabindex="0" *ngIf="productDetails.wished < 1"
+                            (click)="openModal()">
+                      <i class="la-heart lar"></i>wishlist
+                    </button>
+                  </div>
+
+                </div>
+                <div class="details-info-bottom">
+                  <div class="social-share"><label>Share:</label>
+                    <ul class="list-inline social-links">
+                      <li><a
+                        href="javascript:void(0)"
+                        title="Facebook" target="_blank"><i class="lab la-facebook"></i></a></li>
+                      <li><a
+                        href="javascript:void(0)"
+                        title="Twitter" target="_blank"><i class="lab la-twitter"></i></a></li>
+                      <li><a
+                        href="javascript:void(0)"
+                        title="Linkedin" target="_blank"><i class="lab la-linkedin"></i></a></li>
+                      <li><a
+                        href="javascript:void(0)"
+                        title="Tumblr" target="_blank"><i class="lab la-tumblr"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-details-bottom flex-column-reverse flex-lg-row">
+        <div class="product-details-bottom-inner">
+          <div class="product-details-tab clearfix">
+            <ul class="nav nav-tabs tabs">
+              <li class="nav-item"><a data-toggle="tab" class="nav-link active">
+                Description
+              </a></li>
+              <!--            <li class="nav-item"><a data-toggle="tab" class="nav-link">-->
+              <!--              Reviews (0)-->
+              <!--            </a></li>-->
+            </ul>
+            <div class="tab-content">
+              <div id="description" class="tab-pane description active">
+                {{productDetails.description}}
+              </div>
+              <div id="reviews" class="tab-pane description">
+              </div>
+              <div class="tab-products-header clearfix mt-4 mb-4">
+                <ul class="tabs float-left">
+                  <li class="tab-item active">
+                    TRENDING PRODUCTS
+                  </li>
+                </ul>
+              </div>
+              <div class="row sm-gutters row-cols-5"  *ngIf="featured.length > 0">
+                <div class="col mb-1" *ngFor="let eachProduct of featured; let fIndex = index;" >
+                  <div class="product-card-wrapper">
+                    <div class="product-card-actions" *ngIf="Auth == null">
+
+                      <!--Wishlist-->
+                      <button title="Wishlist"  class="btn btn-wishlist " tabindex="0"(click)="openModal()">
+                        <i class="la-heart lar"></i>
+                      </button>
+                      <!--Wishlist-->
+                      <!--Add To Cart-->
+                      <button title="Add To Cart" class="btn btn-at-to-cart" tabindex="0" ><!--(click)="showAddCartModal(eachProduct)"-->
+                        <i class="las la-cart-plus"></i>
+                      </button>
+                      <!--Add To Cart-->
+                    </div>
+                    <div class="product-card-actions" *ngIf="Auth != null">
+                      <!--Wish List-->
+
+                      <button title="Wishlist" class="btn btn-wishlist" tabindex="0" *ngIf="eachProduct.wished == null" (click)="addToWishlist($event, eachProduct.id, fIndex)">
+                        <i class="la-heart lar"></i>
+                      </button>
+                      <button title="Wishlist" class="btn btn-wishlist" tabindex="0" *ngIf="eachProduct.wished == -1" (click)="addToWishlist($event, eachProduct.id,  fIndex)">
+                        <i class="las la-spinner la-spin"></i>
+                      </button>
+                      <button title="Wishlist"  class="btn btn-wishlist wishlist_active" tabindex="0" *ngIf="eachProduct.wished > 0" (click)="deleteWishList($event, eachProduct.id,  fIndex)">
+                        <i class="las la-heart"></i>
+                      </button>
+                      <!--Wish List-->
+                      <!--Add To Cart-->
+                      <button title="Add To Cart" class="btn btn-at-to-cart" tabindex="0" ><i class="las la-cart-plus"></i></button> <!--(click)="showAddCartModal(eachProduct)"-->
+                      <!--Add To Cart-->
+                    </div>
+                    <a  class="product-card" [routerLink]="['product', eachProduct.slug]">
+                      <div class="pre-order" *ngIf="eachProduct.pre_order != 0">
+                        PRE <br> ORDER
+                      </div>
+                      <div class="product-card-top">
+                        <a [routerLink]="['product', eachProduct.slug]"
+                           class="product-image" tabindex="0">
+                          <img class="img1" src="{{eachProduct.images[0].image_full_path}}" alt="product image" *ngIf="eachProduct.images[0] != undefined">
+                          <ng-container *ngIf="eachProduct.images.length == 1">
+                            <img class="img2" src="{{eachProduct.images[0].image_full_path}}" alt="product image" *ngIf="eachProduct.images[0] != undefined">
+                          </ng-container>
+                          <ng-container *ngIf="eachProduct.images.length > 1">
+                            <img class="img2" src="{{eachProduct.images[1].image_full_path}}" alt="product image" *ngIf="eachProduct.images[1] != undefined">
+                          </ng-container>
+                        </a>
+                        <ul class="list-inline product-badge"></ul>
+                      </div>
+                      <div class="product-card-middle">
+                        <a [routerLink]="['product', eachProduct.slug]" class="product-name" tabindex="0"><h5 [innerHTML]="eachProduct.title"></h5></a>
+                        <!--<div class="product-features">
+                          <ul>
+                            <li *ngFor="let eachFeature of eachProduct.features">{{subStr(eachFeature.features, 35)}}</li>
+                          </ul>
+                        </div>-->
+                      </div>
+                      <div class="product-card-bottom">
+                        <div class="btn-price" tabindex="0">
+                          <ng-container *ngIf="eachProduct.discount_type != 2">
+                            <span class="offer-Price">{{eachProduct.variants[0].price}}৳</span>
+                            <span class="regular-price">{{eachProduct.variants[0].price}}৳</span>
+                            <span class="discount">-15%</span>
+                          </ng-container>
+                          <ng-container *ngIf="eachProduct.discount_type == 2">
+                            <span class="offer-Price">{{eachProduct.variants[0].price}}৳</span>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col mb-1">
+                  <div class="each-product-wrapper" >
+                    <div class="product-card-wrapper">
+                      <div class="product-card more-button">
+                        <h5>
+                          View all Products Available in this Category
+                        </h5>
+                        <button class="btn btn-outline-primary">View all <i class="la la-arrow-right"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="CartModal" id="CartModal">
+        <div class="content">
+          <button class="btn btn-close"><i class="las la-times"></i></button> <!-- (click)="closeCartModal()"-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="image">
+                <img [src]="preview" alt="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="product-content">
+                <div class="title">{{SingleData.title}}</div>
+                <h4 class="price theme-color">
+                  <div>
+                    <span >Price: {{price}}৳</span>
+                  </div>
+                </h4>
+                <div class="feature mb-3" >
+                  <ul class="nav flex-column" style="font-size: 14px" >
+                    <li class="nav-item" *ngFor="let AllFeature of SingleData.features">{{AllFeature.features}}</li>
+                  </ul>
+                </div>
+                <div class="variants  mb-3" >
+                  <ng-container  *ngFor="let variant of SingleData.variants">
+                    <a href="javascript:void(0)" [class.active] = "variant.id === variants.variant_id" class="variant" (click)="selectVariant(variant.id)">{{variant.title}}</a>
+                  </ng-container>
+                </div>
+                <div class="number-picker">
+                  <div class="input-group-quantity" style="margin-left: 0">
+                    <input type="text" min="1" max="0" [(ngModel)]="quantity"
+                           class="form-control input-number input-quantity"> <span
+                    class="btn-wrapper">
+                    <button type="button" class="btn btn-number btn-plus" (click)="increase()"> + </button>
+                    <button type="button"
+                            data-type="minus"
+                            disabled="disabled"
+                            class="btn btn-number btn-minus" (click)="decrease()"> - </button>
+                  </span>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="cart_close">
+                  <button type="submit" class="btn btn-primary btn-add-to-cart"
+                          (click)="addToCart($event, SingleData.id)">
+                    <i class="las la-cart-plus"></i> ADD TO CART
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="loading === true">
+  <div class="single_wrapper clearfix">
+    <div class="product-details-wrap" >
+      <div class="product-details-top">
+        <div class="product-details-top-inner row">
+          <div class="product-image-gallery  col-lg-6">
+            <div class="container position-relative">
+              <div class="img-box p-1">
+                <div class="ph-item abs main-view">
+                  <div class="ph-picture">
+                    <div class="brand-text-wrapper">
+                      <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="img-pagi">
+                <ul class="img-nav">
+                  <li class="img-item" *ngFor="let number of [1,2,3,4,5]">
+                    <a class="img-link" href="javascript:void(0)" >
+                      <div class="ph-item abs">
+                        <div class="ph-picture">
+                          <div class="brand-text-wrapper">
+                            <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          <div class="product-details-info  col-lg-6">
+            <div class="details-info-top"><h1 class="product-name">
+              <div class="ph-item abs w-100" style="height: 40px">
+                <div class="ph-picture product-name " ></div>
+              </div>
+            </h1>
+              <div class="brief-description" >
+                <div class="ph-item abs w-100" style="height: 30px" >
+                  <div class="ph-picture product-name " ></div>
+                </div>
+              </div>
+              <div class="brief-description" >
+                <div class="ph-item abs w-100" style="height: 30px" >
+                  <div class="ph-picture product-name " ></div>
+                </div>
+              </div>
+              <div class="brief-description" >
+                <div class="ph-item abs w-100" style="height: 30px" >
+                  <div class="ph-picture product-name " ></div>
+                </div>
+              </div>
+              <span class="brief-description" >
+                      <div class="ph-item abs" style="max-width: 200px;height: 30px">
+                        <div class="ph-picture product-name " ></div>
+                      </div>
+                            <br>
+                      <div class="ph-item abs " style="max-width: 200px;height: 30px">
+                        <div class="ph-picture product-name " ></div>
+                      </div>
+                            <br>
+                      <div class="ph-item abs " style="max-width: 200px;height: 30px">
+                        <div class="ph-picture product-name " ></div>
+                      </div>
+                          </span>
+            </div>
+
+            <div class="details-info-middle">
+              <div class="btn-price" tabindex="0">
+                <div class="ph-item abs " style="max-width: 200px;height: 30px">
+                  <div class="ph-picture product-name " ></div>
+                </div>
+              </div>
+              <br>
+              <div class="product-variants">
+                <div class="variants  mb-3" >
+                  <div class="title">
+                    <div class="ph-item abs " style="height: 30px">
+                      <div class="ph-picture product-name " ></div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="ph-item abs " style="height: 30px">
+                    <div class="ph-picture product-name " ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="details-info-middle-actions mb-3">
+                <div class="number-picker">
+                  <div class="ph-item abs " style="height: 30px">
+                    <div class="ph-picture product-name " ></div>
+                  </div>
+                  <div class="ph-item abs " style="height: 30px">
+                    <div class="ph-picture product-name " ></div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-add-to-cart">
+                  <div class="ph-item abs " style="height: 30px">
+                    <div class="ph-picture product-name " ></div>
+                  </div>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-details-bottom flex-column-reverse flex-lg-row">
+        <div class="product-details-bottom-inner">
+          <div class="product-details-tab clearfix">
+            <ul class="nav nav-tabs tabs">
+              <li class="nav-item"><a data-toggle="tab" class="nav-link active">
+                Description
+              </a></li>
+              <!--            <li class="nav-item"><a data-toggle="tab" class="nav-link">-->
+              <!--              Reviews (0)-->
+              <!--            </a></li>-->
+            </ul>
+            <div class="tab-content">
+              <div  class="tab-pane description active">
+                <div class="ph-item abs " style="height: 30px">
+                  <div class="ph-picture product-name " ></div>
+                </div>
+                <br>
+                <div class="ph-item abs " style="height: 30px">
+                  <div class="ph-picture product-name " ></div>
+                </div>
+                <br>
+                <div class="ph-item abs " style="height: 30px">
+                  <div class="ph-picture product-name " ></div>
+                </div>
+                <br>
+                <div class="ph-item abs " style="height: 30px">
+                  <div class="ph-picture product-name " ></div>
+                </div>
+              </div>
+              <div class="tab-pane description">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

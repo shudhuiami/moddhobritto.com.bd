@@ -1,0 +1,39 @@
+
+<div class="landscape-tab-products-wrap clearfix"  *ngIf="brands.length > 0  && loading == false">
+  <div class="container">
+    <div class="tab-products-header clearfix mb-4">
+      <ul class="tabs float-left">
+        <li class="tab-item active tab-title gradient-text-theme font-title-22">
+          BRANDS
+        </li>
+      </ul>
+    </div>
+    <div class="top-brands-wrap">
+      <div class="top-brands">
+        <div class="row sm-gutters row-cols-lg-7 row-cols-md-5 row-cols-sm-4 row-cols-3"  *ngIf="brands.length > 0">
+          <div class="col mb-2" *ngFor="let eachBrands of brands; let fIndex = index;">
+            <div class="each-brand">
+              <a  [routerLink]="['brands', eachBrands.id]"   class="top-brand-image">
+                <img src="{{eachBrands.full_brand_logo}}" alt="brand logo">
+                <span class="brand-title ">{{eachBrands.title}}</span>
+              </a>
+            </div>
+          </div>
+          <div class="col mb-2" *ngIf="brands.length >20">
+            <div class="each-brand">
+              <div class="top-brand-image more-button">
+                <div class="btn-text ">View all Brands</div>
+                <a href="#"  class="btn btn-sm btn-outline-primary">
+                  View all <i class="la la-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

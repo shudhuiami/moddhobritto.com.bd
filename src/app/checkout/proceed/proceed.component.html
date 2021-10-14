@@ -1,0 +1,160 @@
+<div class="proceed-section">
+  <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="billing-form-wrap " >
+            <div class="tab-products-header clearfix mb-5">
+              <ul class="tabs float-left">
+                <li class="tab-item active">
+                 BILLING FORM
+                </li>
+              </ul>
+            </div>
+
+            <div class="billing-form">
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="name">Email<span>*</span></label>
+                    <input id="name" type="text" placeholder="Name" class="form-control create-form" name="Name" disabled>
+                    <div class="invalid-feedback"></div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="email">Email<span>*</span></label>
+                      <input id="email" type="text" placeholder="Email" class="form-control create-form" name="Email" disabled>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="phone">Phone<span>*</span></label>
+                      <input id="phone" type="text" placeholder="Phone" class="form-control create-form" name="Phone" disabled>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="division">Division<span>*</span></label>
+                      <input id="division" type="text" placeholder="Division" class="form-control create-form" name="division" disabled>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="district">District<span>*</span></label>
+                      <input id="district" type="text" placeholder="District" class="form-control create-form" name="district" disabled>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="area">Area<span>*</span></label>
+                      <input id="area" type="text" placeholder="Area" class="form-control create-form" name="area" disabled>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="zip">Zip Code<span>*</span></label>
+                      <input id="zip" type="text" placeholder="Zip Code" class="form-control create-form" name="zip" disabled>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group mb-3">
+                      <label for="street">Street Area<span>*</span></label>
+                      <input id="street" type="text" placeholder="Street Area" class="form-control create-form" name="street" disabled>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="order-wrap ">
+            <div class="tab-products-header clearfix mb-5">
+              <ul class="tabs float-left">
+                <li class="tab-item active">
+                 ORDER SUMMERY
+                </li>
+              </ul>
+            </div>
+
+            <div class="Summery-wrap">
+              <div class="top">
+                <div class="sub-total d-flex justify-content-between">
+                  <div class="content">
+                    Subtotal
+                  </div>
+                  <div class="price">
+                    254163৳
+
+                  </div>
+                </div>
+                <div class="shipping d-flex justify-content-between">
+                  <div class="content">
+                    Shipping
+                  </div>
+                  <div class="price">
+                    130৳
+
+                  </div>
+                </div>
+              </div>
+              <div class="grand-total">
+                <div class="content">
+                  Grand Total
+                </div>
+                <div class="price">
+                    12542৳
+
+                </div>
+</div>
+              <div class="payment-method mt-5 pl-4 pr-4">
+                <form action="">
+                  <div class="input-group mb-3">
+                    <label class="check-box-container-input">
+                      <input [(ngModel)]="paymentChecked" type="radio" [value]="1"   class="checkbox" name="payment" > Check Online Payments
+                      <span class="checkmark-input"></span>
+                    </label>
+                  </div>
+                  <div *ngIf="paymentChecked == true" class="cardCode mb-4">
+                    <div class="form-group">
+                      <select  class="form-control"   name="address">
+                        <option value="" selected>Select Payment Method</option>
+                        <option value="">234</option>
+                      </select>
+                      <small style="white-space: pre-line"></small>
+                      <small class="text-danger"></small>
+                    </div>
+                    <input type="text"  placeholder="Enter Transaction Code" class="form-control">
+                    <small class="text-danger"></small>
+                  </div>
+                  <div class="input-group mb-3">
+                    <label class="check-box-container-input">
+                      <input type="radio" class="checkbox" [value]="0" name="payment" [(ngModel)]="paymentChecked"> Cash On Delivery
+                      <span class="checkmark-input"></span>
+                    </label>
+
+                  </div>
+                  <div class="order-submit-btn" >
+
+                    <a class="btn">Checkout</a>
+                  </div>
+                </form>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

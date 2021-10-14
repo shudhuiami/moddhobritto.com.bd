@@ -1,0 +1,229 @@
+<div class="product-search-wrap">
+  <div class="container">
+    <div class="product-search">
+      <div class="product-search-left" >
+        <div class="filter-section-wrap" *ngIf="Loading === false && min_max_price === false">
+          <div class="filter-section-header"><h4 class="section-title">
+            Filters
+          </h4> <i class="las la-times sidebar-filter-close" (click)="closeFilter()"></i></div>
+          <div class="filter-section-inner custom-scrollbar">
+            <div class="filter-section"><h6>Price</h6>
+              <div class="filter-price">
+                <form action="" (ngSubmit)="getDeal()">
+                  <div class="price-input">
+                    <div class="form-group"><input name="start_price" type="number" id="price-from" class="form-control price-from" [(ngModel)]="param.start_price" ></div>
+                    <div class="form-group"><input name="end_price" type="number" id="price-to" class="form-control price-to" [(ngModel)]="param.end_price" ></div>
+                  </div>
+                  <div class="form-group price-range mt-2">
+                    <ngx-slider
+
+                      [options]="options"
+                      [(value)]="param.start_price"
+                      [(highValue)]="param.end_price"
+
+                    ></ngx-slider>
+
+                  </div>
+                  <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control" name="keyword" [(ngModel)]="param.keyword" >
+                  </div>
+                  <div class="text-right">
+                    <button  class="btn  btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-section-wrap mt-5" *ngIf="Loading === true">
+          <div class="filter-section-header"><h4 class="section-title">
+            <div class="ph-item abs" style="height: 50px; width: 100%">
+              <div class="ph-picture "  ></div>
+            </div>
+          </h4> <i class="las la-times sidebar-filter-close" ></i></div>
+          <div class="filter-section-inner custom-scrollbar">
+            <div class="filter-section"><h6>
+              <div class="ph-item abs" style="height: 50px;width: 100px ">
+                <div class="ph-picture "  ></div>
+              </div>
+            </h6>
+              <div class="filter-price">
+                <div class="price-input">
+                  <div class="form-group">
+                    <div class="ph-item abs" style="height: 50px;width: 100px ">
+                      <div class="ph-picture "  ></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="ph-item abs" style="height: 50px; width: 100px ">
+                      <div class="ph-picture "  ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group price-range mt-2">
+                  <div class="ph-item abs" style="height: 50px; width: 100% ">
+                    <div class="ph-picture "  ></div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div class="ph-item abs" style="height: 50px; width: 100% ">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="ph-item abs" style="height: 50px; width: 50px ; margin-left: auto; margin-right: 0;">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+
+      <div class="product-search-right">
+        <div class="search-result ">
+          <div class="search-result-top" *ngIf="Loading === false">
+            <div class="content-left"><h4 class="gradient-text-theme" style="font-weight: bold">Deals of the day</h4></div>
+            <div class="content-right">
+              <div class="mobile-view-filter" (click)="openFilter()"><i class="las la-sliders-h"></i>
+                Filters
+              </div>
+              <div class="sorting-bar">
+                <div class="form-group m-r-20">
+                  <select class="form-control custom-select-option right arrow-black" [(ngModel)]="param.filter"  (change)="getDeal()">
+                    <option value="" selected>Default</option>
+                    <option value="title_asc">Name (A - Z)</option>
+                    <option value="title_desc">Name (Z - A)</option>
+                    <option value="price_asc">Price (Low &gt; High)</option>
+                    <option value="price_desc">Price (High &gt; Low)</option>
+                    <option value="views_asc">Views (Low &gt; High)</option>
+                    <option value="views_desc">Views (High &gt; Low)</option>
+                    <option value="brand_asc">Brand (A - Z)</option>
+                    <option value="brand_desc">Brand (Z - A)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select class="form-control custom-select-option right arrow-black" [(ngModel)]="param.limit" (change)="getDeal()">
+                    <option selected  value="10">
+                      10
+                    </option>
+                    <option value="20">
+                      20
+                    </option>
+                    <option value="30" selected="selected">
+                      30
+                    </option>
+                    <option value="40">
+                      40
+                    </option>
+                    <option value="50">
+                      50
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="search-result-top" *ngIf="Loading === true">
+            <div class="content-left">
+              <h4  style="font-weight: 500">
+              <div class="ph-item abs" style="height: 50px; width: 100px">
+                <div class="ph-picture "  ></div>
+              </div>
+            </h4>
+            </div>
+            <div class="content-right">
+              <div class="mobile-view-filter" (click)="openFilter()"><i class="las la-sliders-h"></i>
+                Filters
+              </div>
+              <div class="sorting-bar">
+                <div class="ph-item abs" style="height: 50px; width: 100px">
+                  <div class="ph-picture "  ></div>
+                </div>
+                <div class="form-group">
+                  <div class="ph-item abs" style="height: 50px; width: 100px">
+                    <div class="ph-picture "  ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div >
+            <div *ngIf="products.length == 0 && Loading === false">
+              <div class="wrap-no-data">
+                <div class="container text-center noDataFound bg-white ">
+                  <img src="../../assets/img/not_found.svg" alt="">
+                  <h1 class="display-1">No Product Found</h1>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="products.length > 0 && Loading === false" >
+              <div class="products-list-wrapper">
+                <div class="row sm-gutters row-cols-xl-5 row-cols-lg-5 row-cols-md-4 row-cols-sm-3  row-cols-2 "  *ngIf="products.length > 0">
+                  <div class="col mb-1" *ngFor="let eachProduct of products; let fIndex = index;" >
+                    <app-product-box [eachProduct]="eachProduct"  [fIndex]="fIndex"></app-product-box>
+                  </div>
+                </div>
+              </div>
+              <div >
+                <ng-laravel-pagination theme="theme-default" [data]="laravelData" align="right" [pageDesc]="true" (changePage)="changePage($event)"></ng-laravel-pagination>
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf=" Loading  === true">
+
+            <div class="landscape-tab-products-wrap clearfix">
+              <div class="container">
+                <div class="row sm-gutters row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                  <div class="col mb-1 w-100" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
+                    <div class="product-card-wrapper">
+                      <a  class="product-card" >
+                        <div class="product-card-top">
+                          <div
+                            class="product-image" >
+                            <div class="ph-item abs">
+                              <div class="ph-picture">
+                                <div class="brand-text-wrapper">
+                                  <div [fittext]="true" [activateOnResize]="true" class="brand-text">MODDHOBITTO</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <ul class="list-inline product-badge"></ul>
+                        </div>
+                        <div class="product-card-middle">
+                          <div class="ph-item abs w-100" >
+                            <div class="ph-picture product-name " ></div>
+                          </div>
+                        </div>
+                        <div class="product-card-bottom" >
+                          <div class="btn-price" tabindex="0">
+                            <div class="ph-item abs" style="width: 75%;height: 20px;margin-bottom: 10px">
+                              <div class="ph-picture Price_Current" ></div>
+                            </div>
+                            <div class="ph-item abs " style="width: 50%;height: 20px">
+                              <div class="ph-picture Price_Was " ></div>
+                            </div>
+                            <div class="ph-item abs float-right" style="width: 50px;height: 20px; position: relative; bottom: 20px">
+                              <div class="ph-picture   " ></div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

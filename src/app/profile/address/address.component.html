@@ -1,0 +1,241 @@
+
+        <section class="profile-section">
+          <div class="container" >
+            <div class="row">
+              <div class="col-lg-3">
+                <app-profile-link></app-profile-link>
+              </div>
+            <div class="col-lg-9">
+              <div class="list-of-address mb-3">
+                <div class="tab-products-header clearfix mb-4">
+                  <ul class="tabs float-left">
+                    <li class="tab-item active">
+                      ADDRESS
+                    </li>
+                    <li class="addTable" (click)="CreateAddressModal()">
+                      <button class="btn-background-theme rounded btn btn-sm "  >Add Address</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="lists table-responsive">
+                  <table class="table  table-striped">
+                    <thead>
+                    <tr>
+                      <th  style="max-width: 100px">Address</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="address.length != null">
+                    <tr *ngFor="let addressData of address; let index = index ">
+                      <td style="width: 500px">
+                        <div>
+                          <span class="title">Home Address:</span>
+                         <span class="content">{{addressData.title}}</span>
+                        </div> <br>
+                        <div>
+                          <span class="title">Address:</span>
+                          <span class="content">{{addressData.street}}</span>
+                        </div> <br>
+                        <div>
+                          <span class="title">Region:</span>
+                          <span class="content"> {{addressData.division_name}},{{addressData.district_name}},{{addressData.area_name}} - {{addressData.zip}}</span>                        </div> <br>
+                        <div>
+                          <span class="title">Phone:</span>
+                          <span class="content">{{addressData.phone}}</span>
+                        </div>
+                      </td>
+                      <td style="width: 105px">
+                        <button class="btn-sm btn btn-outline-primary mr-2" (click)="editAddress(index)"><i class="las la-pen"></i></button>
+                        <button class="btn-sm btn btn-outline-danger mr-2" (click)="DeleteConfirmationAddress(index)"><i class="las la-trash"></i></button>
+                      </td>
+                    </tr>
+                    <tr  *ngIf="address.length == 0" class="tableInfo">
+                      <td colspan="10" class="text-center">No Data Found</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <ng-laravel-pagination theme="theme-default" [data]="laravelData" align="right"  [pageDesc]="false" (changePage)="changePage($event)"></ng-laravel-pagination>
+            </div>
+            </div>
+          </div>
+
+          <div class="modal " id="addAddress" >
+            <div class="modal-dialog" >
+              <div class="modal-content p-4">
+                <div class="modal-header mb-2 ">
+                  <h4 class="modal-title">ADD ADDRESS</h4>
+                  <button type="button" class="close" (click)="closeAddAddressModal()" data-dismiss="modal" aria-label="Close">
+                    <span >&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form (ngSubmit)="createdAddress()">
+                    <div class="form-group mb-3">
+                      <input type="text" placeholder="Address Title" name="title" class="form-control create-form" [(ngModel)]="AddAddress.title">
+                      <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group mb-3">
+                      <input type="text" placeholder="Phone" class="form-control create-form  " name="phone" [(ngModel)]="AddAddress.phone">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <select class="form-control  create-form"  name="division" [(ngModel)]="AddAddress.division" (ngModelChange)="getAllDistrict()" >
+                        <option value="" selected>Select Division</option>
+                        <option  *ngFor="let divisions of division " value="{{divisions.id}}">{{divisions.name}}</option>
+                      </select>
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <select class="form-control  create-form"  name="district"  [(ngModel)]="AddAddress.district" (ngModelChange)="getAllArea()">
+                        <option value="" selected>Select District</option>
+                        <option  *ngFor="let cities of district " value="{{cities.id}}">{{cities.name}}</option>
+                      </select>
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <select class="form-control  create-form"  name="area"  [(ngModel)]="AddAddress.area">
+                        <option value="" selected>Select Area</option>
+                        <option  *ngFor="let areas of area " value="{{areas.id}}">{{areas.name}}</option>
+                      </select>
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+
+
+                    <div class="form-group mb-3">
+                      <input type="text" placeholder="Zip Code" class="form-control create-form" name="zip" [(ngModel)]="AddAddress.zip">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <input type="text" placeholder="Street Address" class="form-control create-form" name="street" [(ngModel)]="AddAddress.street">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="modal-footer" style="border: none">
+                      <button *ngIf=" loading=== false" type="submit" class="btn btn-primary btn-block"  >ADD</button>
+                      <button *ngIf=" loading=== true" type="button" disabled data-loading="" class="btn btn-primary btn-block">
+                        <i class="las la-spinner"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--Add Address Modal-->
+
+          <!--Edit Address Modal-->
+          <div class="modal " id="editAddress" >
+            <div class="modal-dialog" >
+              <div class="modal-content p-4" *ngIf="loading === false">
+                <div class="modal-header mb-2 ">
+                  <h4 class="modal-title">Edit ADDRESS</h4>
+                  <button type="button" class="close" (click)="closeEditAddressModal()" data-dismiss="modal" aria-label="Close">
+                    <span >&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form (ngSubmit)="edit()">
+                    <div class="form-group mb-3">
+                      <input type="text" placeholder="Address Title" name="title" class="form-control edit-form" [(ngModel)]="editForm.title">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <input type="text" placeholder="Phone" class="form-control  edit-form" name="phone" [(ngModel)]="editForm.phone">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <select class="form-control edit-form"  name="division" [(ngModel)]="editForm.division" (ngModelChange)="getAllDistrictEdit()" >
+                        <option  *ngFor="let divisions of division " value="{{divisions.id}}">{{divisions.name}}</option>
+                      </select>
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <select class="form-control edit-form"  name="district"  [(ngModel)]="editForm.district" (ngModelChange)="getAllAreaEdit()">
+                        <option  *ngFor="let cities of district " value="{{cities.id}}">{{cities.name}}</option>
+                      </select>
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <select class="form-control edit-form"  name="area"  [(ngModel)]="editForm.area">
+                        <option  *ngFor="let areas of area " value="{{areas.id}}">{{areas.name}}</option>
+                      </select>
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <input type="text" placeholder="Zip Code"  class="form-control edit-form" name="zip" [(ngModel)]="editForm.zip">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <input type="text" placeholder="Street Address" class="form-control" name="street" [(ngModel)]="editForm.street">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+
+
+
+
+                    <div class="modal-footer" style="border: none">
+                      <button *ngIf=" loading=== false" type="submit" class="btn btn-primary btn-block"  >ADD</button>
+                      <button *ngIf=" loading=== true" type="button" disabled data-loading="" class="btn btn-primary btn-block">
+                        <i class="las la-spinner"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+              <div class="placeholder-wrapper" *ngIf="loading === true">
+                <div class="timeline-item sidenav">
+                  <div class="animated-background">
+                    <div class="background-masker content-first-line"></div>
+                    <div class="background-masker content-second-line"></div>
+                    <div class="background-masker content-third-line"></div>
+                    <div class="background-masker content-fourth-line"></div>
+                    <div class="background-masker content-fifth-line"></div>
+                    <div class="background-masker content-sixth-line"></div>
+                    <div class="background-masker content-sixth-line"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Delete Modal -->
+          <div class="modal " id="DeleteAddress" >
+            <div class="modal-dialog" >
+              <div class="modal-content p-4">
+                <div class="icon">
+                  <i class="las la-exclamation-circle"></i>
+                </div>
+                <div class="title" style="">Are you sure?</div>
+                <div class="text" style="">You want to cancel this order.</div>
+                <div class="footer-btn">
+                  <div class="button-container">
+                    <button class="btn btn-cancel" tabindex="0" (click)="closeDeleteConfirmation()">Cancel</button>
+                  </div>
+                  <div class="button-container">
+                    <button class="btn btn-confirm" (click)="delete()">OK</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </section>
